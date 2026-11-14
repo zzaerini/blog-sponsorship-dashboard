@@ -97,6 +97,24 @@
     margin: 0; font-size: 13px; color: #475569; line-height: 1.4;
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
   }
+  .card-actions {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 8px;
+  }
+  .action-link {
+    font-size: 12px; font-weight: 700; color: #2563eb; text-decoration: none;
+    background: #eff6ff; padding: 4px 10px; border-radius: 8px;
+  }
+  .del-btn {
+    font-size: 12px; font-weight: 600; color: #dc2626; background: #fef2f2;
+    border: 1px solid #fecaca; padding: 4px 10px; border-radius: 8px; cursor: pointer; font-family: inherit;
+  }
+  .restore-bar {
+    display: none; text-align: center; margin-top: 14px; font-size: 12px; color: #64748b;
+  }
+  .restore-btn {
+    margin-left: 6px; font-size: 12px; font-weight: 600; color: #2563eb; background: none;
+    border: none; text-decoration: underline; cursor: pointer; font-family: inherit;
+  }
   .badges { display: flex; gap: 6px; flex-wrap: wrap; }
   .pill { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
   .cat-pill { background: #f1f5f9; color: #475569; }
@@ -137,7 +155,7 @@
   <header>
     <div>
       <h1>째린빵 · 블로그 협찬 대시보드</h1>
-      <div class="sub">업데이트 2026-11-14 19:59 · 네이버 메일(3/27~11/14) + 레뷰 선정 내역</div>
+      <div class="sub">업데이트 2026-11-14 20:12 · 네이버 메일(3/27~11/14) + 레뷰 선정 내역</div>
     </div>
     <span class="acct-badge">총 81건 · 공개용 요약본</span>
   </header>
@@ -188,7 +206,7 @@
 
   <main class="list" id="cardList">
     
-    <article class="card card-urgent" data-idx="0" data-status="진행 중" data-cat="뷰티 / 미용실(헤어)" data-date="2026-11-19" data-brand="바앤복하우스 잠실점">
+    <article class="card card-urgent" data-id="plat_1426585" data-idx="0" data-status="진행 중" data-cat="뷰티 / 미용실(헤어)" data-date="2026-11-19" data-brand="바앤복하우스 잠실점">
       <div class="card-top">
         <span class="src-tag">레뷰 선정</span>
         <div class="badges">
@@ -198,6 +216,10 @@
       </div>
       <h3 class="brand">바앤복하우스 잠실점</h3>
       <p class="offer-line">펌, 컬러, 커트 중 택1 (남성 체험 가능 / 대리 체험 가능·블로거 동일 연령)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://www.revu.net/campaign/1426585" target="_blank" rel="noopener">캠페인 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="plat_1426585">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -212,11 +234,10 @@
           <ul class='terms'><li>콘텐츠 마감: 2026-11-19</li><li>콘텐츠 등록기간: 2026-11-06 ~ 2026-11-19</li><li>방문 가능: 월~목 10:00~17:30 (5일 전 체험권 내 예약 필수, 당일 예약 불가)</li><li>위치: 잠실/송리단길</li><li>얼굴 노출 필수(모자이크 불가)</li><li>예약금 있음 — 방문 시 환불</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 레뷰 선정 · 마감일 5일전 · 체험권 미사용</p>
           <p class="sender"><strong>발신:</strong> 레뷰 · <span class="muted">콘텐츠 마감 2026-11-19</span></p>
-          <a class="ext-link" href="https://www.revu.net/campaign/1426585" target="_blank" rel="noopener">캠페인 페이지 열기 ↗</a>
         </div>
       </details>
     </article>
-    <article class="card card-urgent" data-idx="1" data-status="진행 중" data-cat="뷰티 / 미용실(헤어)" data-date="2026-11-24" data-brand="셀리에 성수 (SELYIE)">
+    <article class="card card-urgent" data-id="plat_1427110" data-idx="1" data-status="진행 중" data-cat="뷰티 / 미용실(헤어)" data-date="2026-11-24" data-brand="셀리에 성수 (SELYIE)">
       <div class="card-top">
         <span class="src-tag">레뷰 선정</span>
         <div class="badges">
@@ -226,6 +247,10 @@
       </div>
       <h3 class="brand">셀리에 성수 (SELYIE)</h3>
       <p class="offer-line">A.커트 / B.염색 / C.레이어드펌 중 택1 (1인 제공, 남성 체험 불가, 대리인 가능·동일 연령대)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://www.revu.net/campaign/1427110" target="_blank" rel="noopener">캠페인 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="plat_1427110">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -240,11 +265,10 @@
           <ul class='terms'><li>콘텐츠 마감: 2026-11-24</li><li>콘텐츠 등록기간: 2026-11-12 ~ 2026-11-24</li><li>방문 가능: 방문 가능 월·수·목·금 10:30~16:30 (영업 10:30~19:30, 매주 화 정기휴무)</li><li>위치: 성수동</li><li>선정 발표 후 1~2일 내 업체 예약 조율 필수(마감 임박 문의 시 불가할 수 있음)</li><li>얼굴 노출 가능자만 신청 가능</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 레뷰 선정 · 마감일 10일전 · 체험권 미사용 · 대리인가능</p>
           <p class="sender"><strong>발신:</strong> 레뷰 · <span class="muted">콘텐츠 마감 2026-11-24</span></p>
-          <a class="ext-link" href="https://www.revu.net/campaign/1427110" target="_blank" rel="noopener">캠페인 페이지 열기 ↗</a>
         </div>
       </details>
     </article>
-    <article class="card" data-idx="2" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-11-13" data-brand="답십리 안경원 · 서초 피부과">
+    <article class="card" data-id="sp_ba5ffb43" data-idx="2" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-11-13" data-brand="답십리 안경원 · 서초 피부과">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -254,6 +278,10 @@
       </div>
       <h3 class="brand">답십리 안경원 · 서초 피부과</h3>
       <p class="offer-line">안경+렌즈 5만원 / 지방분해주사 최대 3부위 1회(105만원 상당, 인스타 릴스는 얼굴3+전신3부위 220만원 상당)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_ba5ffb43">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -268,11 +296,10 @@
           <ul class='terms'><li>블로그/인스타 피드/릴스 중 선택</li><li>지방분해주사 최대 3부위 1회</li><li>평일 11~18:30 방문</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 체험단 모집 대행 · <span class="muted">수신 2026-11-13</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="3" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-11-05" data-brand="선릉역 피부과(블로그체험단)">
+    <article class="card" data-id="sp_95e3df4b" data-idx="3" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-11-05" data-brand="선릉역 피부과(블로그체험단)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -282,6 +309,10 @@
       </div>
       <h3 class="brand">선릉역 피부과(블로그체험단)</h3>
       <p class="offer-line">포텐자 펌핑팁 또는 리니어지 리프팅 中 택1 1회</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_95e3df4b">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -296,11 +327,10 @@
           <ul class='terms'><li>시술 택1</li><li>체험일로부터 1~2주 내 포스팅</li><li>최근 3개월 유사 시술 이력 시 제한</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 블로그체험단 모집 · <span class="muted">수신 2026-11-05</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="4" data-status="마감 지남" data-cat="운동·웰니스" data-date="2026-10-22" data-brand="리프리다 분당점">
+    <article class="card" data-id="sp_34cb5cf4" data-idx="4" data-status="마감 지남" data-cat="운동·웰니스" data-date="2026-10-22" data-brand="리프리다 분당점">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -310,6 +340,10 @@
       </div>
       <h3 class="brand">리프리다 분당점</h3>
       <p class="offer-line">발레 EMS + 순환 EMS 프리미엄 관리 1회(정상가 30만원)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_34cb5cf4">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -324,11 +358,10 @@
           <ul class='terms'><li>사진 12장 이상 + 영상 1개</li><li>필수 키워드 사용</li><li>평일 예약만 가능</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 마감(10/23) 경과</p>
           <p class="sender"><strong>발신:</strong> 리뷰나비 · <span class="muted">수신 2026-10-22</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="5" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-10-16" data-brand="뷰티인팩트(강남 피부과)">
+    <article class="card" data-id="sp_6275c7df" data-idx="5" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-10-16" data-brand="뷰티인팩트(강남 피부과)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -338,6 +371,10 @@
       </div>
       <h3 class="brand">뷰티인팩트(강남 피부과)</h3>
       <p class="offer-line">울타늄(울쎄라+티타늄) 1회</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_6275c7df">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -352,11 +389,10 @@
           <ul class='terms'><li>블로그 후기 1회</li><li>시술 전/후 사진 전달</li><li>카톡 채널 접수</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 뷰티인팩트 · <span class="muted">수신 2026-10-16</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="6" data-status="검토 대기" data-cat="리빙·생활" data-date="2026-10-14" data-brand="답십리 안경원 · 종로 예물샵 · 사전점검 서비스">
+    <article class="card" data-id="sp_84bf89a6" data-idx="6" data-status="검토 대기" data-cat="리빙·생활" data-date="2026-10-14" data-brand="답십리 안경원 · 종로 예물샵 · 사전점검 서비스">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -366,6 +402,10 @@
       </div>
       <h3 class="brand">답십리 안경원 · 종로 예물샵 · 사전점검 서비스</h3>
       <p class="offer-line">안경+렌즈 5만원 / 실버 귀걸이·목걸이 세트 10만원 상당 / 신축 아파트 셀프 사전점검 이용권</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_84bf89a6">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -380,11 +420,10 @@
           <ul class='terms'><li>3개 캠페인 중 선택</li><li>사전점검 건 원고료 5천원</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 체험단 모집 대행 · <span class="muted">수신 2026-10-14</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="7" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-10-13" data-brand="논현동 피부과">
+    <article class="card" data-id="sp_1c48615b" data-idx="7" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-10-13" data-brand="논현동 피부과">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -394,6 +433,10 @@
       </div>
       <h3 class="brand">논현동 피부과</h3>
       <p class="offer-line">온다(ONDA) 리프팅 맞춤 시술 전액 지원 + 프라이빗룸 1:1 상담</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_1c48615b">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -408,11 +451,10 @@
           <ul class='terms'><li>사진 10장 이상 + 10초 영상</li><li>병원 상호 노출 지양</li><li>권장 키워드 2~3개</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 피부과체험단 모집 · <span class="muted">수신 2026-10-13</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="8" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-10-09" data-brand="강남 압구정 안과">
+    <article class="card" data-id="sp_4d821af5" data-idx="8" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-10-09" data-brand="강남 압구정 안과">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -422,6 +464,10 @@
       </div>
       <h3 class="brand">강남 압구정 안과</h3>
       <p class="offer-line">아이링 수술 무상 지원(500만원 상당)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_4d821af5">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -436,11 +482,10 @@
           <ul class='terms'><li>모집 1명</li><li>인스타 피드 3건</li><li>인스타 공개 계정 보유</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신·신청 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 동네검증단(PLATEMEDIA) · <span class="muted">수신 2026-10-09</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="9" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-10-08" data-brand="가이아랩스">
+    <article class="card" data-id="sp_c7d3db90" data-idx="9" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-10-08" data-brand="가이아랩스">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -450,6 +495,10 @@
       </div>
       <h3 class="brand">가이아랩스</h3>
       <p class="offer-line">쁘띠시술 + AI 피부진단 (30만원 이상 상당)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_c7d3db90">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -464,11 +513,10 @@
           <ul class='terms'><li>회신 시 병원·시술 확정</li><li>카톡 플러스친구 접수</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 가이아랩스(뷰티 체험단) · <span class="muted">수신 2026-10-08</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="10" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-10-06" data-brand="압구정피부과">
+    <article class="card" data-id="sp_67836db1" data-idx="10" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-10-06" data-brand="압구정피부과">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -478,6 +526,10 @@
       </div>
       <h3 class="brand">압구정피부과</h3>
       <p class="offer-line">울쎄라/써마지 30% 할인, 스킨부스터, 보톡스, 온다리프팅, 티타늄, 레비나스, 포텐자 中 1개</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_67836db1">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -492,11 +544,10 @@
           <ul class='terms'><li>시술 1개 택1</li><li>전후 사진 마케팅 활용 동의</li><li>병원명 미노출</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 압구정피부과 담당자 · <span class="muted">수신 2026-10-06</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="11" data-status="검토 대기" data-cat="운동·웰니스" data-date="2026-09-15" data-brand="빌드업피트니스 성수역점">
+    <article class="card" data-id="sp_b9d7ef46" data-idx="11" data-status="검토 대기" data-cat="운동·웰니스" data-date="2026-09-15" data-brand="빌드업피트니스 성수역점">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -506,6 +557,10 @@
       </div>
       <h3 class="brand">빌드업피트니스 성수역점</h3>
       <p class="offer-line">PT 2회 + 헬스장 1개월 이용권</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_b9d7ef46">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -520,11 +575,10 @@
           <ul class='terms'><li>포스팅 1회</li><li>성수 지역 직장인 타깃</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 커넥트리플 · <span class="muted">수신 2026-09-15</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="12" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-09-14" data-brand="대구 동성로 한의원">
+    <article class="card" data-id="sp_e6647989" data-idx="12" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-09-14" data-brand="대구 동성로 한의원">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -534,6 +588,10 @@
       </div>
       <h3 class="brand">대구 동성로 한의원</h3>
       <p class="offer-line">편평사마귀 무제한 제거 + 콘텐츠 완료 후 3만원</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_e6647989">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -548,11 +606,10 @@
           <ul class='terms'><li>모집 5명</li><li>팔로워 1만 이상</li><li>병원명 비노출</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 마감 경과</p>
           <p class="sender"><strong>발신:</strong> 동네검증단(PLATEMEDIA) · <span class="muted">수신 2026-09-14</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="13" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-09-13" data-brand="피롤츠커피하우스 (회현점·시청점)">
+    <article class="card" data-id="sp_6f39522b" data-idx="13" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-09-13" data-brand="피롤츠커피하우스 (회현점·시청점)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -562,6 +619,10 @@
       </div>
       <h3 class="brand">피롤츠커피하우스 (회현점·시청점)</h3>
       <p class="offer-line">음료 2종(주류 제외) + 디저트 2종, 2인 방문</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_6f39522b">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -576,11 +637,10 @@
           <ul class='terms'><li>방문일 7일 이내 발행</li><li>지정 키워드 삽입</li><li>2인 방문 가능</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 피롤츠커피하우스 · <span class="muted">수신 2026-09-13</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="14" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-09-11" data-brand="강남역 피부과">
+    <article class="card" data-id="sp_6773a7fc" data-idx="14" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-09-11" data-brand="강남역 피부과">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -590,6 +650,10 @@
       </div>
       <h3 class="brand">강남역 피부과</h3>
       <p class="offer-line">컴포트 리쥬란/컴포트 리투오/포토나 레이저/바디 온다/바디 모노실 中 1가지</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_6773a7fc">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -604,11 +668,10 @@
           <ul class='terms'><li>시술 후 3주 내 업로드</li><li>1년 이상 게시 유지</li><li>시술 장면 사진 3~4장 필수</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 체험단 모집 담당 · <span class="muted">수신 2026-09-11</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="15" data-status="검토 대기" data-cat="여행·숙소" data-date="2026-09-09" data-brand="트래비티(Trevity)">
+    <article class="card" data-id="sp_7e3fd5c9" data-idx="15" data-status="검토 대기" data-cat="여행·숙소" data-date="2026-09-09" data-brand="트래비티(Trevity)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -618,6 +681,10 @@
       </div>
       <h3 class="brand">트래비티(Trevity)</h3>
       <p class="offer-line">해외 호텔·리조트·레스토랑·마사지·액티비티 체험 캠페인(베트남 중심)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_7e3fd5c9">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -632,11 +699,10 @@
           <ul class='terms'><li>여행 일정 필요</li><li>캠페인 페이지에서 상세 확인</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 트래비티 · <span class="muted">수신 2026-09-09</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="16" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-08-31" data-brand="서오릉순메밀막국수 · 서오릉불고기">
+    <article class="card" data-id="sp_7d782f9f" data-idx="16" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-08-31" data-brand="서오릉순메밀막국수 · 서오릉불고기">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -646,6 +712,10 @@
       </div>
       <h3 class="brand">서오릉순메밀막국수 · 서오릉불고기</h3>
       <p class="offer-line">2인 42,000원 / 3인 54,000원 / 4인 66,000원 상당 식사(막국수+수육), 불고기 2인 5.5만~4인 6.5만</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_7d782f9f">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -660,11 +730,10 @@
           <ul class='terms'><li>인원수별 식사권</li><li>화요일 휴무(막국수)</li><li>구글폼/카톡 신청</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 아임파블 · <span class="muted">수신 2026-08-31</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="17" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-31" data-brand="강남 논현역 피부과">
+    <article class="card" data-id="sp_21cac897" data-idx="17" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-31" data-brand="강남 논현역 피부과">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -674,6 +743,10 @@
       </div>
       <h3 class="brand">강남 논현역 피부과</h3>
       <p class="offer-line">소유다운 주사(지방분해) 얼굴·바디 시술 1회</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_21cac897">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -688,11 +761,10 @@
           <ul class='terms'><li>소유다운 주사만 가능</li><li>보증금 있음</li><li>카톡 오픈채팅 신청</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 체험단 모집 담당 · <span class="muted">수신 2026-08-31</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="18" data-status="마감 지남" data-cat="리빙·생활" data-date="2026-08-26" data-brand="욕실 선물세트(배송형)">
+    <article class="card" data-id="sp_9d6875ce" data-idx="18" data-status="마감 지남" data-cat="리빙·생활" data-date="2026-08-26" data-brand="욕실 선물세트(배송형)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -702,6 +774,10 @@
       </div>
       <h3 class="brand">욕실 선물세트(배송형)</h3>
       <p class="offer-line">핸드워시·퍼퓸 바디워시·샤워볼·전용패드·파우치·메시지카드(7만원 상당)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_9d6875ce">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -716,11 +792,10 @@
           <ul class='terms'><li>일방문자 200명 이상 우대</li><li>원고 1,100자·사진 15장</li><li>카톡 선물하기 링크 필수</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 배송·포스팅 기간 경과</p>
           <p class="sender"><strong>발신:</strong> 캠페인 리뷰어 모집 · <span class="muted">수신 2026-08-26</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="19" data-status="마감 지남" data-cat="리빙·생활" data-date="2026-08-23" data-brand="상동메가빅약국">
+    <article class="card" data-id="sp_b1761539" data-idx="19" data-status="마감 지남" data-cat="리빙·생활" data-date="2026-08-23" data-brand="상동메가빅약국">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -730,6 +805,10 @@
       </div>
       <h3 class="brand">상동메가빅약국</h3>
       <p class="offer-line">2만원 내 자유이용권</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_b1761539">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -744,11 +823,10 @@
           <ul class='terms'><li>모집 4명</li><li>방문형</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 마감(9/17) 경과</p>
           <p class="sender"><strong>발신:</strong> 동네검증단(PLATEMEDIA) · <span class="muted">수신 2026-08-23</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="20" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-08-21" data-brand="을지로 피부과">
+    <article class="card" data-id="sp_b0965b77" data-idx="20" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-08-21" data-brand="을지로 피부과">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -758,6 +836,10 @@
       </div>
       <h3 class="brand">을지로 피부과</h3>
       <p class="offer-line">큐티온 NMN 스킨부스터 시술 1회</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_b0965b77">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -772,11 +854,10 @@
           <ul class='terms'><li>얼굴 노출 필수</li><li>7일 후 비포&amp;애프터 리뷰</li><li>비공개 캠페인</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 기간 경과</p>
           <p class="sender"><strong>발신:</strong> 리뷰나비 · <span class="muted">수신 2026-08-21</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="21" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-08-21" data-brand="크레센트421 일산점">
+    <article class="card" data-id="sp_1274b5bb" data-idx="21" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-08-21" data-brand="크레센트421 일산점">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -786,6 +867,10 @@
       </div>
       <h3 class="brand">크레센트421 일산점</h3>
       <p class="offer-line">자연눈썹·콤보눈썹·남자자연눈썹·입술문신·헤어라인문신 中 택1</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_1274b5bb">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -800,11 +885,10 @@
           <ul class='terms'><li>모집 3명</li><li>택1 시술</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 마감(9/16) 경과</p>
           <p class="sender"><strong>발신:</strong> 동네검증단(PLATEMEDIA) · <span class="muted">수신 2026-08-21</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="22" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-08-20" data-brand="강남역 인근 피부과">
+    <article class="card" data-id="sp_a5f7677b" data-idx="22" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-08-20" data-brand="강남역 인근 피부과">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -814,6 +898,10 @@
       </div>
       <h3 class="brand">강남역 인근 피부과</h3>
       <p class="offer-line">비절개 눈밑지방재배치(필요 시 필러 병행) 150만원 상당, 5명</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_a5f7677b">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -828,11 +916,10 @@
           <ul class='terms'><li>병원 채널 촬영(개인 업로드 아님)</li><li>얼굴 전체 노출</li><li>보증금</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 촬영일(8/25) 경과</p>
           <p class="sender"><strong>발신:</strong> 블로그체험단 모집 · <span class="muted">수신 2026-08-20</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="23" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-08-20" data-brand="크레센트421 강남점">
+    <article class="card" data-id="sp_57394591" data-idx="23" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-08-20" data-brand="크레센트421 강남점">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -842,6 +929,10 @@
       </div>
       <h3 class="brand">크레센트421 강남점</h3>
       <p class="offer-line">눈썹·입술·헤어라인 반영구 中 택1</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_57394591">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -856,11 +947,10 @@
           <ul class='terms'><li>모집 3명</li><li>택1 시술</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 마감(9/16) 경과</p>
           <p class="sender"><strong>발신:</strong> 동네검증단(PLATEMEDIA) · <span class="muted">수신 2026-08-20</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="24" data-status="마감 지남" data-cat="운동·웰니스" data-date="2026-08-15" data-brand="마에스트로 주짓수 삼덕점">
+    <article class="card" data-id="sp_cd18a464" data-idx="24" data-status="마감 지남" data-cat="운동·웰니스" data-date="2026-08-15" data-brand="마에스트로 주짓수 삼덕점">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -870,6 +960,10 @@
       </div>
       <h3 class="brand">마에스트로 주짓수 삼덕점</h3>
       <p class="offer-line">7일 무료이용권 + 고급 도복 무료 대여</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_cd18a464">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -884,11 +978,10 @@
           <ul class='terms'><li>모집 5명</li><li>방문형(대구)</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 마감(9/11) 경과</p>
           <p class="sender"><strong>발신:</strong> 동네검증단(PLATEMEDIA) · <span class="muted">수신 2026-08-15</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="25" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-14" data-brand="압구정 프리미엄 피부과">
+    <article class="card" data-id="sp_dee56b33" data-idx="25" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-14" data-brand="압구정 프리미엄 피부과">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -898,6 +991,10 @@
       </div>
       <h3 class="brand">압구정 프리미엄 피부과</h3>
       <p class="offer-line">국산 필러 2cc(90만원 상당) / 수입 눈밑필러 1cc(70만원) / 실리프팅 4~6줄(80~120만원) 中 택1</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_dee56b33">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -912,11 +1009,10 @@
           <ul class='terms'><li>희망 시술·방문일·블로그 주소 회신</li><li>이미지 15장 이상</li><li>보증금 10만원</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 피부과 체험단 담당(김채운) · <span class="muted">수신 2026-08-14</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="26" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-13" data-brand="조서이(강남 피부과)">
+    <article class="card" data-id="sp_457a1de2" data-idx="26" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-13" data-brand="조서이(강남 피부과)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -926,6 +1022,10 @@
       </div>
       <h3 class="brand">조서이(강남 피부과)</h3>
       <p class="offer-line">색소레이저/포텐자/인모드/스킨부스터/필러/보톡스/윤곽주사/스킨케어 中 1가지</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_457a1de2">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -940,11 +1040,10 @@
           <ul class='terms'><li>리뷰 4종(네이버·구글·블로그·카페)</li><li>before/after 필수</li><li>평일 월~목 위주</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 개인 섭외 · <span class="muted">수신 2026-08-13</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="27" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-11" data-brand="코엑스 앞 피부과">
+    <article class="card" data-id="sp_acae0b21" data-idx="27" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-11" data-brand="코엑스 앞 피부과">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -954,6 +1053,10 @@
       </div>
       <h3 class="brand">코엑스 앞 피부과</h3>
       <p class="offer-line">레이저리프팅·필러·쥬베룩 등 中 선택</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_acae0b21">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -968,11 +1071,10 @@
           <ul class='terms'><li>설문 지원</li><li>시술 선택 가능</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 한효솔 · <span class="muted">수신 2026-08-11</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="28" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-10" data-brand="V&amp;MJ 피부과(청담)">
+    <article class="card" data-id="sp_3b228654" data-idx="28" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-10" data-brand="V&amp;MJ 피부과(청담)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -982,6 +1084,10 @@
       </div>
       <h3 class="brand">V&amp;MJ 피부과(청담)</h3>
       <p class="offer-line">AI울쎄라 또는 히트업써마지 체험</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_3b228654">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -996,11 +1102,10 @@
           <ul class='terms'><li>신규 장비 런칭 체험</li><li>맞춤 리프팅</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 김민주 · <span class="muted">수신 2026-08-10</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="29" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-10" data-brand="강남역 성형외과">
+    <article class="card" data-id="sp_8ee7208b" data-idx="29" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-10" data-brand="강남역 성형외과">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1010,6 +1115,10 @@
       </div>
       <h3 class="brand">강남역 성형외과</h3>
       <p class="offer-line">스킨부스터(리투오)·실리프팅·필러·립쥬란·눈수술 中 선택</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_8ee7208b">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1024,11 +1133,10 @@
           <ul class='terms'><li>포스팅 1년 이상 유지</li><li>화~금만 방문</li><li>카톡 신청</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 안현영 · <span class="muted">수신 2026-08-10</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="30" data-status="검토 대기" data-cat="뷰티 제품" data-date="2026-08-08" data-brand="페이스팩토리">
+    <article class="card" data-id="sp_7490853e" data-idx="30" data-status="검토 대기" data-cat="뷰티 제품" data-date="2026-08-08" data-brand="페이스팩토리">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1038,6 +1146,10 @@
       </div>
       <h3 class="brand">페이스팩토리</h3>
       <p class="offer-line">올레샷 해독 클렌저(오일투폼 디톡스 클렌저) 제품 제공</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_7490853e">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1052,11 +1164,10 @@
           <ul class='terms'><li>제품 배송형</li><li>구글폼 신청</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 구글폼 신청 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 페이스팩토리 담당자 · <span class="muted">수신 2026-08-08</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="31" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-08-07" data-brand="천호 미용실">
+    <article class="card" data-id="sp_59e11ac6" data-idx="31" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-08-07" data-brand="천호 미용실">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1066,6 +1177,10 @@
       </div>
       <h3 class="brand">천호 미용실</h3>
       <p class="offer-line">디자이너 염색 또는 클리닉 무료(퍼스널 상담 포함)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_59e11ac6">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1080,11 +1195,10 @@
           <ul class='terms'><li>20~40대 여성</li><li>비포&amp;애프터 필수</li><li>월~목만 가능</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 모집·체험 기간 경과</p>
           <p class="sender"><strong>발신:</strong> 리뷰나비 · <span class="muted">수신 2026-08-07</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="32" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-05" data-brand="잠실 프리미엄 피부과">
+    <article class="card" data-id="sp_e7da2581" data-idx="32" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-05" data-brand="잠실 프리미엄 피부과">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1094,6 +1208,10 @@
       </div>
       <h3 class="brand">잠실 프리미엄 피부과</h3>
       <p class="offer-line">리프팅·필러/스킨보톡스·물광/리쥬란·여드름/색소 中 각 1개씩 총 2가지</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_e7da2581">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1108,11 +1226,10 @@
           <ul class='terms'><li>시술 2가지 선택</li><li>사진 15장 이상</li><li>보증금 5만원</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 피부과 체험단 담당(김채운) · <span class="muted">수신 2026-08-05</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="33" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-05" data-brand="영영영의원(신논현)">
+    <article class="card" data-id="sp_3c664afd" data-idx="33" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-05" data-brand="영영영의원(신논현)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1122,6 +1239,10 @@
       </div>
       <h3 class="brand">영영영의원(신논현)</h3>
       <p class="offer-line">온다 리프팅(바디 가능)·쥬베룩 볼륨·쥬베룩 아이 中 택1</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_3c664afd">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1136,11 +1257,10 @@
           <ul class='terms'><li>시술 택1</li><li>14일 내 결과물</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 000clinic · <span class="muted">수신 2026-08-05</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="34" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-05" data-brand="디피체험단(청담 리앤델의원 등)">
+    <article class="card" data-id="sp_068e0043" data-idx="34" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-05" data-brand="디피체험단(청담 리앤델의원 등)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1150,6 +1270,10 @@
       </div>
       <h3 class="brand">디피체험단(청담 리앤델의원 등)</h3>
       <p class="offer-line">포텐리쥬베룩 등 시술 中 택1</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_068e0043">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1164,11 +1288,10 @@
           <ul class='terms'><li>통합 구글폼 지원</li><li>미선정 시 개인정보 파기</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 구글폼 신청 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 디피체험단 · <span class="muted">수신 2026-08-05</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="35" data-status="검토 대기" data-cat="스튜디오·사진" data-date="2026-08-03" data-brand="오디티모드(잠실 셀프사진관)">
+    <article class="card" data-id="sp_2a55c52c" data-idx="35" data-status="검토 대기" data-cat="스튜디오·사진" data-date="2026-08-03" data-brand="오디티모드(잠실 셀프사진관)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1178,6 +1301,10 @@
       </div>
       <h3 class="brand">오디티모드(잠실 셀프사진관)</h3>
       <p class="offer-line">6만원 상당 촬영권(20분 무제한 촬영)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_2a55c52c">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1192,11 +1319,10 @@
           <ul class='terms'><li>&#x27;잠실 셀프사진관&#x27; 키워드 3회 이상</li><li>플레이스 링크 삽입</li><li>1주 내 후기</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 오디티모드 · <span class="muted">수신 2026-08-03</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="36" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-03" data-brand="돈블리마케팅(선릉·압구정 피부과)">
+    <article class="card" data-id="sp_58a8f385" data-idx="36" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-03" data-brand="돈블리마케팅(선릉·압구정 피부과)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1206,6 +1332,10 @@
       </div>
       <h3 class="brand">돈블리마케팅(선릉·압구정 피부과)</h3>
       <p class="offer-line">피부과 방문 체험(상담 후 시술)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_58a8f385">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1220,11 +1350,10 @@
           <ul class='terms'><li>구글폼 신청</li><li>병원 SNS 촬영 동의 우대</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 구글폼 신청 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 돈블리마케팅 김수연 · <span class="muted">수신 2026-08-03</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="37" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-07-31" data-brand="용산 병원(덴서티)">
+    <article class="card" data-id="sp_b91b366f" data-idx="37" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-07-31" data-brand="용산 병원(덴서티)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1234,6 +1363,10 @@
       </div>
       <h3 class="brand">용산 병원(덴서티)</h3>
       <p class="offer-line">덴서티 알파팁 600샷 1회</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_b91b366f">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1248,11 +1381,10 @@
           <ul class='terms'><li>600샷 1회</li><li>비포&amp;애프터 필수</li><li>3개월 내 리프팅 이력 제한</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 블로그체험단 모집 · <span class="muted">수신 2026-07-31</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="38" data-status="마감 지남" data-cat="운동·웰니스" data-date="2026-07-29" data-brand="댄스인 스튜디오(파주)">
+    <article class="card" data-id="sp_ea28aa46" data-idx="38" data-status="마감 지남" data-cat="운동·웰니스" data-date="2026-07-29" data-brand="댄스인 스튜디오(파주)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1262,6 +1394,10 @@
       </div>
       <h3 class="brand">댄스인 스튜디오(파주)</h3>
       <p class="offer-line">3회 클래스 이용권</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_ea28aa46">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1276,11 +1412,10 @@
           <ul class='terms'><li>모집 10명</li><li>방문형(파주)</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 마감(8/23) 경과</p>
           <p class="sender"><strong>발신:</strong> 동네검증단(PLATEMEDIA) · <span class="muted">수신 2026-07-29</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="39" data-status="검토 대기" data-cat="리빙·생활" data-date="2026-07-27" data-brand="코칸(COKAN)">
+    <article class="card" data-id="sp_075f93cd" data-idx="39" data-status="검토 대기" data-cat="리빙·생활" data-date="2026-07-27" data-brand="코칸(COKAN)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1290,6 +1425,10 @@
       </div>
       <h3 class="brand">코칸(COKAN)</h3>
       <p class="offer-line">오브제 디퓨저(베스트 제품) 제품 제공</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_075f93cd">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1304,11 +1443,10 @@
           <ul class='terms'><li>제품 제공형</li><li>구글폼 신청</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 구글폼 신청 기록 없음</p>
           <p class="sender"><strong>발신:</strong> PR COKAN · <span class="muted">수신 2026-07-27</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="40" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-07-24" data-brand="슈퍼왁싱 강남">
+    <article class="card" data-id="sp_73d280cd" data-idx="40" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-07-24" data-brand="슈퍼왁싱 강남">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1318,6 +1456,10 @@
       </div>
       <h3 class="brand">슈퍼왁싱 강남</h3>
       <p class="offer-line">브라질리언·눈썹왁싱·헤어라인왁싱·다리절반·팔절반 中 택1</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_73d280cd">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1332,11 +1474,10 @@
           <ul class='terms'><li>모집 5명</li><li>택1 시술</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 마감(8/26) 경과</p>
           <p class="sender"><strong>발신:</strong> 동네검증단(PLATEMEDIA) · <span class="muted">수신 2026-07-24</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="41" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-07-23" data-brand="강남 피부과(뉴비쥬)">
+    <article class="card" data-id="sp_61e0bdc7" data-idx="41" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-07-23" data-brand="강남 피부과(뉴비쥬)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1346,6 +1487,10 @@
       </div>
       <h3 class="brand">강남 피부과(뉴비쥬)</h3>
       <p class="offer-line">뉴비쥬 이중턱 지방분해주사 1회</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_61e0bdc7">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1360,11 +1505,10 @@
           <ul class='terms'><li>얼굴 노출·전후 6장</li><li>원고 사전 컨펌</li><li>시술 후 2주 내 포스팅</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 블로그체험단 모집 · <span class="muted">수신 2026-07-23</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="42" data-status="마감 지남" data-cat="리빙·생활" data-date="2026-07-22" data-brand="핸드워시·바디워시(배송형)">
+    <article class="card" data-id="sp_f3e7ef8f" data-idx="42" data-status="마감 지남" data-cat="리빙·생활" data-date="2026-07-22" data-brand="핸드워시·바디워시(배송형)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1374,6 +1518,10 @@
       </div>
       <h3 class="brand">핸드워시·바디워시(배송형)</h3>
       <p class="offer-line">핸드워시 2개·퍼퓸 바디워시·전용패드·쇼핑백·메시지카드(6만원 상당)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_f3e7ef8f">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1388,11 +1536,10 @@
           <ul class='terms'><li>일방문자 200명 이상 우대</li><li>사진 15장·영상 20초</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 배송·포스팅 기간 경과</p>
           <p class="sender"><strong>발신:</strong> 캠페인 리뷰어 모집 · <span class="muted">수신 2026-07-22</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="43" data-status="마감 지남" data-cat="문화·공연" data-date="2026-07-20" data-brand="강남 코미디라운지">
+    <article class="card" data-id="sp_5b352594" data-idx="43" data-status="마감 지남" data-cat="문화·공연" data-date="2026-07-20" data-brand="강남 코미디라운지">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1402,6 +1549,10 @@
       </div>
       <h3 class="brand">강남 코미디라운지</h3>
       <p class="offer-line">입장권 2매 + 맥주 2잔(7.24 공연 20~22시)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_5b352594">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1416,11 +1567,10 @@
           <ul class='terms'><li>7/24 공연 한정</li><li>2인</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 공연일 경과</p>
           <p class="sender"><strong>발신:</strong> 블로그랩체험단 · <span class="muted">수신 2026-07-20</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="44" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-07-19" data-brand="강남 성형외과(지방흡입)">
+    <article class="card" data-id="sp_de159fdc" data-idx="44" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-07-19" data-brand="강남 성형외과(지방흡입)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1430,6 +1580,10 @@
       </div>
       <h3 class="brand">강남 성형외과(지방흡입)</h3>
       <p class="offer-line">지방흡입·가슴지방이식·골반지방이식 전액 지원(500~800만원 상당) + 6~8주 애프터케어</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_de159fdc">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1444,11 +1598,10 @@
           <ul class='terms'><li>수술급 시술(500~800만원 상당)</li><li>애프터케어 포함</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 체험단 모집 · <span class="muted">수신 2026-07-19</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="45" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-07-11" data-brand="짱구야 학교가자 별관(건대)">
+    <article class="card" data-id="sp_d6213b23" data-idx="45" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-07-11" data-brand="짱구야 학교가자 별관(건대)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1458,6 +1611,10 @@
       </div>
       <h3 class="brand">짱구야 학교가자 별관(건대)</h3>
       <p class="offer-line">55,000원 자유이용권(주류 필수), 인스타 추가 시 15,000원 추가</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_d6213b23">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1472,11 +1629,10 @@
           <ul class='terms'><li>주류 1잔 필수</li><li>인스타 추가 시 1.5만원</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 짱구야 학교가자 · <span class="muted">수신 2026-07-11</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="46" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-07-09" data-brand="신당역 수낙(이자카야)">
+    <article class="card" data-id="sp_a3544410" data-idx="46" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-07-09" data-brand="신당역 수낙(이자카야)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1486,6 +1642,10 @@
       </div>
       <h3 class="brand">신당역 수낙(이자카야)</h3>
       <p class="offer-line">2~3인 5만원 매장 이용권(주류 1 필수, 남은 금액 자율)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_a3544410">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1500,11 +1660,10 @@
           <ul class='terms'><li>주류 1잔 필수</li><li>월 휴무</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 아임파블 · <span class="muted">수신 2026-07-09</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="47" data-status="회신 완료" data-cat="플랫폼·제휴" data-date="2026-07-02" data-brand="NOL(놀데이) · 이지엠피플">
+    <article class="card" data-id="sp_2713e1df" data-idx="47" data-status="회신 완료" data-cat="플랫폼·제휴" data-date="2026-07-02" data-brand="NOL(놀데이) · 이지엠피플">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1514,6 +1673,10 @@
       </div>
       <h3 class="brand">NOL(놀데이) · 이지엠피플</h3>
       <p class="offer-line">NOL 놀데이 프로모션 소개 + 국내 숙소(히든베이 호텔) 후기 포스팅</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_2713e1df">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1528,11 +1691,10 @@
           <ul class='terms'><li>원고료 협의(본인 5만원 제시)</li><li>2차 활용 별도 5만원</li><li>포스팅 후 4개월 뒤 말일 입금</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 7/3 회신 — 원고료 5만원·2차 활용 5만원 제시, 히든베이 호텔 이미지 보유. 이후 후속 메일 없음</p>
           <p class="sender"><strong>발신:</strong> 이지엠피플 · <span class="muted">수신 2026-07-02</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="48" data-status="검토 대기" data-cat="기자단·체험단 모집" data-date="2026-07-01" data-brand="리뷰의만족 체험단">
+    <article class="card" data-id="sp_4d4f82af" data-idx="48" data-status="검토 대기" data-cat="기자단·체험단 모집" data-date="2026-07-01" data-brand="리뷰의만족 체험단">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1542,6 +1704,10 @@
       </div>
       <h3 class="brand">리뷰의만족 체험단</h3>
       <p class="offer-line">준최 블로그 직속 기자단 상시 모집(원고료 지급)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_4d4f82af">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1556,11 +1722,10 @@
           <ul class='terms'><li>상시 모집</li><li>평균 방문자수 기재</li><li>인스타 동시 업로드 여부 확인</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 지원 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 리뷰의만족 · <span class="muted">수신 2026-07-01</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="49" data-status="마감 지남" data-cat="맛집·카페" data-date="2026-06-30" data-brand="홍대 혼술바 담소">
+    <article class="card" data-id="sp_5adcda6c" data-idx="49" data-status="마감 지남" data-cat="맛집·카페" data-date="2026-06-30" data-brand="홍대 혼술바 담소">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1570,6 +1735,10 @@
       </div>
       <h3 class="brand">홍대 혼술바 담소</h3>
       <p class="offer-line">1인 3만원 / 2인 5만원 이용권(주류 2인, 위스키 제외)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_5adcda6c">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1584,11 +1753,10 @@
           <ul class='terms'><li>모집 10명</li><li>화 휴무</li><li>당첨 후 2주 내 리뷰</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 모집 기간(7/1) 경과</p>
           <p class="sender"><strong>발신:</strong> 여기서 · <span class="muted">수신 2026-06-30</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="50" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-26" data-brand="성남 비만클리닉">
+    <article class="card" data-id="sp_300fc170" data-idx="50" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-26" data-brand="성남 비만클리닉">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1598,6 +1766,10 @@
       </div>
       <h3 class="brand">성남 비만클리닉</h3>
       <p class="offer-line">지방추출주사 1회(팔뚝·허벅지 中 택1) + 후관리 3회(총 4회 방문), 250만원 상당</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_300fc170">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1612,11 +1784,10 @@
           <ul class='terms'><li>70kg 미만</li><li>주 1회 총 4회 방문</li><li>평일만 가능</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 블로거 협찬 모집 · <span class="muted">수신 2026-06-26</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="51" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-25" data-brand="강남역 인근 피부과">
+    <article class="card" data-id="sp_8a303a70" data-idx="51" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-25" data-brand="강남역 인근 피부과">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1626,6 +1797,10 @@
       </div>
       <h3 class="brand">강남역 인근 피부과</h3>
       <p class="offer-line">비절개 눈밑지방재배치(필요 시 필러 병행) 최대 150만원 상당</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_8a303a70">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1640,11 +1815,10 @@
           <ul class='terms'><li>코~이마 노출</li><li>원고 컨펌 후 업로드</li><li>체험 후 1주 내</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 블로그체험단 모집 · <span class="muted">수신 2026-06-25</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="52" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-25" data-brand="강남역 피부과(제제나무)">
+    <article class="card" data-id="sp_5f08309f" data-idx="52" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-25" data-brand="강남역 피부과(제제나무)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1654,6 +1828,10 @@
       </div>
       <h3 class="brand">강남역 피부과(제제나무)</h3>
       <p class="offer-line">뉴비쥬/립쥬란/온다리프팅/인모드/필러/하이코 실리프팅 中 상담 후 결정</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_5f08309f">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1668,11 +1846,10 @@
           <ul class='terms'><li>원고료 10만원</li><li>리뷰 3종(블로그·플레이스·구글)</li><li>상담 후 시술 결정</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 제제나무 · <span class="muted">수신 2026-06-25</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="53" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-24" data-brand="강남 피부과(Kesxis)">
+    <article class="card" data-id="sp_e7faa10e" data-idx="53" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-24" data-brand="강남 피부과(Kesxis)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1682,6 +1859,10 @@
       </div>
       <h3 class="brand">강남 피부과(Kesxis)</h3>
       <p class="offer-line">하이엔드 필러·바디슈링크+바디씬·쿨페이즈·목주름필러·올타이트·립쥬란·침샘보톡스·쥬베룩 中 선택</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_e7faa10e">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1696,11 +1877,10 @@
           <ul class='terms'><li>폼 신청</li><li>선정자 개별 연락</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 기록 없음</p>
           <p class="sender"><strong>발신:</strong> Kesxis Jorlos · <span class="muted">수신 2026-06-24</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="54" data-status="검토 대기" data-cat="스튜디오·사진" data-date="2026-06-23" data-brand="스튜디오 오늘,예쁨(잠실)">
+    <article class="card" data-id="sp_a1d2267f" data-idx="54" data-status="검토 대기" data-cat="스튜디오·사진" data-date="2026-06-23" data-brand="스튜디오 오늘,예쁨(잠실)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1710,6 +1890,10 @@
       </div>
       <h3 class="brand">스튜디오 오늘,예쁨(잠실)</h3>
       <p class="offer-line">프리미엄 셀프촬영 패키지 2시간 + 드레스 35벌·소품 무제한 + 원본·보정본·인화(23만원 상당)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_a1d2267f">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1724,11 +1908,10 @@
           <ul class='terms'><li>2시간 촬영</li><li>드레스 35벌</li><li>7일 내 포스팅</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 스튜디오 오늘,예쁨 · <span class="muted">수신 2026-06-23</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="55" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-23" data-brand="양재역 클리닉">
+    <article class="card" data-id="sp_9e7bcb35" data-idx="55" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-23" data-brand="양재역 클리닉">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1738,6 +1921,10 @@
       </div>
       <h3 class="brand">양재역 클리닉</h3>
       <p class="offer-line">울쎄라·세르프·엘라비에리투오·네오페이스·올리디아마요·고우리 中 1가지</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_9e7bcb35">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1752,11 +1939,10 @@
           <ul class='terms'><li>시술 1가지</li><li>일회성 포스팅</li><li>전후사진 제공</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 제인이 · <span class="muted">수신 2026-06-23</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="56" data-status="회신 완료" data-cat="뷰티 제품" data-date="2026-06-22" data-brand="비터셀즈">
+    <article class="card" data-id="sp_caead1cc" data-idx="56" data-status="회신 완료" data-cat="뷰티 제품" data-date="2026-06-22" data-brand="비터셀즈">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1766,6 +1952,10 @@
       </div>
       <h3 class="brand">비터셀즈</h3>
       <p class="offer-line">정보성 게시물 작성(가이드·사진 일체 제공, 정리만 하는 단순 작업)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_caead1cc">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1780,11 +1970,10 @@
           <ul class='terms'><li>단가 협의</li><li>가이드 사전 확인 필요</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 6/24 회신 — 3~5만원(기자단형)/5~10만원 제시, 상세 가이드 요청. 이후 회신 없음</p>
           <p class="sender"><strong>발신:</strong> 비터셀즈 마케팅팀 이현채 · <span class="muted">수신 2026-06-22</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="57" data-status="진행 중" data-cat="맛집·카페" data-date="2026-06-22" data-brand="더그릭베어(강남N타워점)">
+    <article class="card" data-id="sp_e252b262" data-idx="57" data-status="진행 중" data-cat="맛집·카페" data-date="2026-06-22" data-brand="더그릭베어(강남N타워점)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1794,6 +1983,10 @@
       </div>
       <h3 class="brand">더그릭베어(강남N타워점)</h3>
       <p class="offer-line">매장 방문 2만원 이용권 + 수제 그래놀라 세트</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_e252b262">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1808,11 +2001,10 @@
           <ul class='terms'><li>2만원 이용권+그래놀라</li><li>블로그 500자·사진 5장</li><li>지도 리뷰 1회</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 6/24 회신 → 업체가 7/3 18:30 2인 방문 확정. 이후 포스팅 확인 메일은 없음</p>
           <p class="sender"><strong>발신:</strong> 더그릭베어 이태규 · <span class="muted">수신 2026-06-22</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="58" data-status="완료" data-cat="피부과·시술" data-date="2026-06-22" data-brand="엠디셀 ESC60(민앤민의원 강남)">
+    <article class="card" data-id="sp_d24cce67" data-idx="58" data-status="완료" data-cat="피부과·시술" data-date="2026-06-22" data-brand="엠디셀 ESC60(민앤민의원 강남)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1822,6 +2014,10 @@
       </div>
       <h3 class="brand">엠디셀 ESC60(민앤민의원 강남)</h3>
       <p class="offer-line">ESC60 스킨부스터 시술 1회(약 20만원 상당)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_d24cce67">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1836,11 +2032,10 @@
           <ul class='terms'><li>원고료 5만원</li><li>시술 전후 사진(1일·3~7일 차)</li><li>원고료 지급 정보 폼 제출</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 6/22 수락→6/23 연락처 전달→시술·8/4 포스팅(blog.naver.com/[블로그]/224368266841)→9/11 원고료 지급 완료 통보</p>
           <p class="sender"><strong>발신:</strong> 엠디셀 이해인 · <span class="muted">수신 2026-06-22</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="59" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-17" data-brand="강남역 성형외과">
+    <article class="card" data-id="sp_c24d1faf" data-idx="59" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-17" data-brand="강남역 성형외과">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1850,6 +2045,10 @@
       </div>
       <h3 class="brand">강남역 성형외과</h3>
       <p class="offer-line">스킨부스터(리투오)·필러·립쥬란·눈수술 中 선택</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_c24d1faf">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1864,11 +2063,10 @@
           <ul class='terms'><li>포스팅 1년 이상 유지</li><li>화~금 방문</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 고다현 · <span class="muted">수신 2026-06-17</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="60" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-17" data-brand="선릉역 피부과(돈블리마케팅)">
+    <article class="card" data-id="sp_f7e260ef" data-idx="60" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-17" data-brand="선릉역 피부과(돈블리마케팅)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1878,6 +2076,10 @@
       </div>
       <h3 class="brand">선릉역 피부과(돈블리마케팅)</h3>
       <p class="offer-line">피부과 방문 체험(상담 후 시술)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_f7e260ef">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1892,11 +2094,10 @@
           <ul class='terms'><li>구글폼 신청</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 구글폼 신청 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 돈블리마케팅 김수연 · <span class="muted">수신 2026-06-17</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="61" data-status="검토 대기" data-cat="운동·웰니스" data-date="2026-06-10" data-brand="오붓(obud)">
+    <article class="card" data-id="sp_b6440025" data-idx="61" data-status="검토 대기" data-cat="운동·웰니스" data-date="2026-06-10" data-brand="오붓(obud)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1906,6 +2107,10 @@
       </div>
       <h3 class="brand">오붓(obud)</h3>
       <p class="offer-line">오붓패스 4회권(요가·필라테스·크로스핏 등) + 크리에이터 5% 할인코드</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_b6440025">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1920,11 +2125,10 @@
           <ul class='terms'><li>오붓패스 4회권</li><li>30일 유효</li><li>추천 리워드</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 6/10 제안 → 6/11 리마인드 메일까지 수신, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 오붓 김혜원 · <span class="muted">수신 2026-06-10</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="62" data-status="마감 지남" data-cat="운동·웰니스" data-date="2026-05-29" data-brand="원더 바레(서울 강서)">
+    <article class="card" data-id="sp_3d23b8fc" data-idx="62" data-status="마감 지남" data-cat="운동·웰니스" data-date="2026-05-29" data-brand="원더 바레(서울 강서)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1934,6 +2138,10 @@
       </div>
       <h3 class="brand">원더 바레(서울 강서)</h3>
       <p class="offer-line">바레 지도자 자격증 과정 5월 토요일반(250만원 상당, 18시간)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_3d23b8fc">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1948,11 +2156,10 @@
           <ul class='terms'><li>모집 2명</li><li>리뷰 3회</li><li>3일 교육 참석</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 모집 기간 경과</p>
           <p class="sender"><strong>발신:</strong> 여기서 · <span class="muted">수신 2026-05-29</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="63" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-05-27" data-brand="남도가는길 김형순(신촌)">
+    <article class="card" data-id="sp_97418082" data-idx="63" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-05-27" data-brand="남도가는길 김형순(신촌)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1962,6 +2169,10 @@
       </div>
       <h3 class="brand">남도가는길 김형순(신촌)</h3>
       <p class="offer-line">2~3인 완도정식 / 4인 남도특정식</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_97418082">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -1976,11 +2187,10 @@
           <ul class='terms'><li>인원수별 코스</li><li>주차 가능</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 아임파블 · <span class="muted">수신 2026-05-27</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="64" data-status="마감 지남" data-cat="맛집·카페" data-date="2026-05-24" data-brand="프리미엄 다이닝(한우 오마카세)">
+    <article class="card" data-id="sp_c0329b56" data-idx="64" data-status="마감 지남" data-cat="맛집·카페" data-date="2026-05-24" data-brand="프리미엄 다이닝(한우 오마카세)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -1990,6 +2200,10 @@
       </div>
       <h3 class="brand">프리미엄 다이닝(한우 오마카세)</h3>
       <p class="offer-line">한우 오마카세·한정식 다이닝 18만원 상당</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_c0329b56">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2004,11 +2218,10 @@
           <ul class='terms'><li>18만원 상당</li><li>선착순</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 선착순 모집 종료로 판단</p>
           <p class="sender"><strong>발신:</strong> 인플루언서 매칭 플랫폼 · <span class="muted">수신 2026-05-24</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="65" data-status="검토 대기" data-cat="플랫폼·제휴" data-date="2026-05-21" data-brand="투어라이브">
+    <article class="card" data-id="sp_d5ca0e12" data-idx="65" data-status="검토 대기" data-cat="플랫폼·제휴" data-date="2026-05-21" data-brand="투어라이브">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -2018,6 +2231,10 @@
       </div>
       <h3 class="brand">투어라이브</h3>
       <p class="offer-line">여행 가이드 앱 링크 삽입 제휴 — 판매금액의 20% 수수료</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_d5ca0e12">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2032,11 +2249,10 @@
           <ul class='terms'><li>수수료 20%</li><li>기존 글에도 링크 삽입 가능</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 5/21 제안 → 5/25 리마인드, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 투어라이브 · <span class="muted">수신 2026-05-21</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="66" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-05-21" data-brand="중랑·강동 맛집 + 멜로스킨 앰플">
+    <article class="card" data-id="sp_359c9565" data-idx="66" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-05-21" data-brand="중랑·강동 맛집 + 멜로스킨 앰플">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -2046,6 +2262,10 @@
       </div>
       <h3 class="brand">중랑·강동 맛집 + 멜로스킨 앰플</h3>
       <p class="offer-line">숯불구이 2인분+꽃게탕 / 글루타치온 샷 앰플 4주분(배송)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_359c9565">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2060,11 +2280,10 @@
           <ul class='terms'><li>맛집 2곳 택1</li><li>앰플 4주분 배송형</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 체험단 모집 · <span class="muted">수신 2026-05-21</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="67" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-05-14" data-brand="퍼즐코퍼레이션(라바짜)">
+    <article class="card" data-id="sp_5b5f6ba3" data-idx="67" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-05-14" data-brand="퍼즐코퍼레이션(라바짜)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -2074,6 +2293,10 @@
       </div>
       <h3 class="brand">퍼즐코퍼레이션(라바짜)</h3>
       <p class="offer-line">라바짜 이탈리아 액상커피 체험(네이버 인플루언서 체험단)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_5b5f6ba3">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2088,11 +2311,10 @@
           <ul class='terms'><li>원고료 지급</li><li>키워드챌린지</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 5월 업로드 일정 경과</p>
           <p class="sender"><strong>발신:</strong> 퍼즐 UGC팀 · <span class="muted">수신 2026-05-14</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="68" data-status="완료" data-cat="맛집·카페" data-date="2026-04-24" data-brand="그레인제빵소(길동점)">
+    <article class="card" data-id="sp_46957d2e" data-idx="68" data-status="완료" data-cat="맛집·카페" data-date="2026-04-24" data-brand="그레인제빵소(길동점)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -2102,6 +2324,10 @@
       </div>
       <h3 class="brand">그레인제빵소(길동점)</h3>
       <p class="offer-line">가정의날 케이크·빵 체험(방문 5/1 12~13시)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_46957d2e">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2116,11 +2342,10 @@
           <ul class='terms'><li>방문 5/1</li><li>3일 내 포스팅</li><li>가이드라인(노션) 준수</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 4/25 진행 회신 → 5/1 방문 → 5/6 포스팅(blog.naver.com/[블로그]/224275881082) → 업체 감사 회신</p>
           <p class="sender"><strong>발신:</strong> 그레인제빵소 김민성 · <span class="muted">수신 2026-04-24</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="69" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-04-23" data-brand="이수역 피부과(텐써마)">
+    <article class="card" data-id="sp_29a43a23" data-idx="69" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-04-23" data-brand="이수역 피부과(텐써마)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -2130,6 +2355,10 @@
       </div>
       <h3 class="brand">이수역 피부과(텐써마)</h3>
       <p class="offer-line">텐써마 300샷 + 원고료 5만원</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_29a43a23">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2144,11 +2373,10 @@
           <ul class='terms'><li>원고료 5만원</li><li>얼굴 노출 필수</li><li>병원명 비노출</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 기간 경과</p>
           <p class="sender"><strong>발신:</strong> 리뷰나비 · <span class="muted">수신 2026-04-23</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="70" data-status="완료" data-cat="리빙·생활" data-date="2026-04-22" data-brand="클루바(CLUEVA)">
+    <article class="card" data-id="sp_617c9d0b" data-idx="70" data-status="완료" data-cat="리빙·생활" data-date="2026-04-22" data-brand="클루바(CLUEVA)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -2158,6 +2386,10 @@
       </div>
       <h3 class="brand">클루바(CLUEVA)</h3>
       <p class="offer-line">터치리스 자동 디스펜서 1종 무상 제공(화이트)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_617c9d0b">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2172,11 +2404,10 @@
           <ul class='terms'><li>제품 무상 제공</li><li>사진+영상 포함 후기</li><li>업로드 지연 조율 이력</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 4/23 수락(주소 전달) → 5/26 업체 독촉 → 5/27 연장 요청 → 5/31 포스팅(blog.naver.com/[블로그]/224302042197) → 업체 감사 회신 6/1</p>
           <p class="sender"><strong>발신:</strong> 클루바 이지영 · <span class="muted">수신 2026-04-22</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="71" data-status="마감 지남" data-cat="기자단·체험단 모집" data-date="2026-04-21" data-brand="밀크T(천재교과서)">
+    <article class="card" data-id="sp_b424b555" data-idx="71" data-status="마감 지남" data-cat="기자단·체험단 모집" data-date="2026-04-21" data-brand="밀크T(천재교과서)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -2186,6 +2417,10 @@
       </div>
       <h3 class="brand">밀크T(천재교과서)</h3>
       <p class="offer-line">밀크T 14일 무료체험 + 신세계상품권 10만원 + 유입 건당 5~10만원</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_b424b555">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2200,11 +2435,10 @@
           <ul class='terms'><li>5세~초중등 자녀 필요</li><li>원고료 10만원 상품권</li><li>유입 성과급</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> SNSKOREA · <span class="muted">수신 2026-04-21</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="72" data-status="검토 대기" data-cat="뷰티 제품" data-date="2026-04-20" data-brand="레디우스(판테알엔 밤크림)">
+    <article class="card" data-id="sp_e46d1fed" data-idx="72" data-status="검토 대기" data-cat="뷰티 제품" data-date="2026-04-20" data-brand="레디우스(판테알엔 밤크림)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -2214,6 +2448,10 @@
       </div>
       <h3 class="brand">레디우스(판테알엔 밤크림)</h3>
       <p class="offer-line">밤 크림 1종 + 스마트블록 상위 3위 노출 시 원고료 5만원</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_e46d1fed">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2228,11 +2466,10 @@
           <ul class='terms'><li>원고료 5만원은 노출 조건부</li><li>네이버폼 신청</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 네이버폼 신청 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 체험단 모집 · <span class="muted">수신 2026-04-20</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="73" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-04-15" data-brand="흉터치료 전문 한의원(8개 지점)">
+    <article class="card" data-id="sp_9694429a" data-idx="73" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-04-15" data-brand="흉터치료 전문 한의원(8개 지점)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -2242,6 +2479,10 @@
       </div>
       <h3 class="brand">흉터치료 전문 한의원(8개 지점)</h3>
       <p class="offer-line">흉터 치료 3회 방문 + 3회 포스팅</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_9694429a">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2256,11 +2497,10 @@
           <ul class='terms'><li>3회 방문·3회 포스팅</li><li>모집 5명</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 체험단 모집 대행 · <span class="muted">수신 2026-04-15</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="74" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-04-14" data-brand="천호역 피부과(텐써마)">
+    <article class="card" data-id="sp_65b29774" data-idx="74" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-04-14" data-brand="천호역 피부과(텐써마)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -2270,6 +2510,10 @@
       </div>
       <h3 class="brand">천호역 피부과(텐써마)</h3>
       <p class="offer-line">텐써마 300샷</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_65b29774">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2284,11 +2528,10 @@
           <ul class='terms'><li>얼굴 노출 필수</li><li>병원명 비노출</li><li>~4/17 신청</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 기간(4/17) 경과</p>
           <p class="sender"><strong>발신:</strong> 리뷰나비 · <span class="muted">수신 2026-04-14</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="75" data-status="완료" data-cat="문화·공연" data-date="2026-04-13" data-brand="룸익스케이프 블랙점">
+    <article class="card" data-id="sp_4da37d4b" data-idx="75" data-status="완료" data-cat="문화·공연" data-date="2026-04-13" data-brand="룸익스케이프 블랙점">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -2298,6 +2541,10 @@
       </div>
       <h3 class="brand">룸익스케이프 블랙점</h3>
       <p class="offer-line">방탈출 &#x27;에이전트&#x27; 테마 체험(2인)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_4da37d4b">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2312,11 +2559,10 @@
           <ul class='terms'><li>2인 체험</li><li>포스팅 1회</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 4/13 예약 회신 → 4/19 체험 → 5/5 포스팅(blog.naver.com/[블로그]/224275843607)</p>
           <p class="sender"><strong>발신:</strong> 룸익스케이프 · <span class="muted">수신 2026-04-13</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="76" data-status="검토 대기" data-cat="기자단·체험단 모집" data-date="2026-04-09" data-brand="행복마케팅 리얼리뷰체험단">
+    <article class="card" data-id="sp_a12c1d13" data-idx="76" data-status="검토 대기" data-cat="기자단·체험단 모집" data-date="2026-04-09" data-brand="행복마케팅 리얼리뷰체험단">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -2326,6 +2572,10 @@
       </div>
       <h3 class="brand">행복마케팅 리얼리뷰체험단</h3>
       <p class="offer-line">전국 체험처 리스트(피부과·문신·에스테틱·메이크업 등) 상시 모집</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_a12c1d13">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2340,11 +2590,10 @@
           <ul class='terms'><li>상시 모집</li><li>중복 지원 가능</li><li>선정 시 카톡 안내</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 4/9·4/30 두 차례 리스트 수신, 지원 기록 없음</p>
           <p class="sender"><strong>발신:</strong> 행복마케팅 섭외팀 · <span class="muted">수신 2026-04-09</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="77" data-status="마감 지남" data-cat="리빙·생활" data-date="2026-04-08" data-brand="퍼즐코퍼레이션(올드캐슬 위스키)">
+    <article class="card" data-id="sp_a3e16797" data-idx="77" data-status="마감 지남" data-cat="리빙·생활" data-date="2026-04-08" data-brand="퍼즐코퍼레이션(올드캐슬 위스키)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -2354,6 +2603,10 @@
       </div>
       <h3 class="brand">퍼즐코퍼레이션(올드캐슬 위스키)</h3>
       <p class="offer-line">올드캐슬 위스키 제품 제공 + 원고료(구매형)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_a3e16797">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2368,11 +2621,10 @@
           <ul class='terms'><li>구매형</li><li>원고료 지급</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 4월 업로드 일정 경과</p>
           <p class="sender"><strong>발신:</strong> 퍼즐 UGC팀 · <span class="muted">수신 2026-04-08</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="78" data-status="마감 지남" data-cat="맛집·카페" data-date="2026-04-07" data-brand="어라운지(커피 원두)">
+    <article class="card" data-id="sp_cbb12178" data-idx="78" data-status="마감 지남" data-cat="맛집·카페" data-date="2026-04-07" data-brand="어라운지(커피 원두)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -2382,6 +2634,10 @@
       </div>
       <h3 class="brand">어라운지(커피 원두)</h3>
       <p class="offer-line">콜롬비아 디카페인 1kg 홀빈 원두 제공</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_cbb12178">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2396,11 +2652,10 @@
           <ul class='terms'><li>원고료 없음</li><li>홀빈 1kg</li><li>4/12~4/18 업로드</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 업로드 기간 경과</p>
           <p class="sender"><strong>발신:</strong> 루프잇 박세영 · <span class="muted">수신 2026-04-07</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="79" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-04-03" data-brand="에즈 오브 투데이(썬스크린)">
+    <article class="card" data-id="sp_1c867225" data-idx="79" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-04-03" data-brand="에즈 오브 투데이(썬스크린)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -2410,6 +2665,10 @@
       </div>
       <h3 class="brand">에즈 오브 투데이(썬스크린)</h3>
       <p class="offer-line">선스크린 제품 제공 + 출금 가능 포인트 25,000P</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_1c867225">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2424,11 +2683,10 @@
           <ul class='terms'><li>릴스 1건</li><li>25,000P</li><li>~4/7 마감</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 모집 기간(4/7) 경과</p>
           <p class="sender"><strong>발신:</strong> 소셜라우더/퓨어글로벌 · <span class="muted">수신 2026-04-03</span></p>
-          
         </div>
       </details>
     </article>
-    <article class="card" data-idx="80" data-status="완료" data-cat="리빙·생활" data-date="2026-02-06" data-brand="유피트(쿡웨어)">
+    <article class="card" data-id="sp_00d190cf" data-idx="80" data-status="완료" data-cat="리빙·생활" data-date="2026-02-06" data-brand="유피트(쿡웨어)">
       <div class="card-top">
         <span class="src-tag">네이버 메일</span>
         <div class="badges">
@@ -2438,6 +2696,10 @@
       </div>
       <h3 class="brand">유피트(쿡웨어)</h3>
       <p class="offer-line">쿡웨어 제품 협찬(배송)</p>
+      <div class="card-actions">
+        <a class="action-link" href="https://mail.naver.com/v2/folders/0/all" target="_blank" rel="noopener">메일함 열기 ↗</a>
+        <button type="button" class="del-btn" data-del="sp_00d190cf">삭제</button>
+      </div>
       <details class="card-details">
         <summary>자세히 보기</summary>
         <div class="detail-body">
@@ -2452,12 +2714,15 @@
           <ul class='terms'><li>업체 확인 자료 요청 후 진행</li><li>2/26 포스팅</li></ul>
           <p class="evidence"><strong>상태 근거:</strong> 2/6 수락(업체 확인 자료 요청)→2/9 주소 전달→2/19 수령→2/26 포스팅 완료</p>
           <p class="sender"><strong>발신:</strong> 유피트 · <span class="muted">수신 2026-02-06</span></p>
-          
         </div>
       </details>
     </article>
   </main>
   <p class="empty" id="empty">조건에 맞는 협찬이 없어요.</p>
+  <div class="restore-bar" id="restoreBar">
+    <span id="deletedCount"></span>
+    <button type="button" class="restore-btn" id="restoreBtn">모두 복원</button>
+  </div>
 
   <p class="footer-note">
     총 81건 · 레뷰 선정 2건 + 네이버 메일 79건<br/>
@@ -2467,10 +2732,24 @@
 
 <script>
 (function () {
+  var STORAGE_KEY = 'zzaerini_deleted_sponsorships_v1';
   var list = document.getElementById('cardList');
   var cards = Array.prototype.slice.call(list.querySelectorAll('.card'));
   var empty = document.getElementById('empty');
+  var restoreBar = document.getElementById('restoreBar');
+  var deletedCountEl = document.getElementById('deletedCount');
   var state = { q: '', st: 'all', cat: 'all', sort: 'default' };
+
+  function loadDeleted() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) { return []; }
+  }
+  function saveDeleted(arr) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); } catch (e) {}
+  }
+  var deletedIds = loadDeleted();
 
   function apply() {
     var q = state.q.trim().toLowerCase();
@@ -2483,17 +2762,41 @@
     var shown = 0;
     sorted.forEach(function (el) {
       list.appendChild(el);
+      var isDel = deletedIds.indexOf(el.dataset.id) !== -1;
       var st = el.dataset.status;
       var cat = el.dataset.cat;
       var okSt = state.st === 'all' || (state.st === 'done_all' ? (st === '완료' || st === '회신 완료') : st === state.st);
       var okCat = state.cat === 'all' || cat === state.cat;
       var okQ = !q || el.textContent.toLowerCase().indexOf(q) !== -1;
-      var vis = okSt && okCat && okQ;
+      var vis = !isDel && okSt && okCat && okQ;
       el.style.display = vis ? '' : 'none';
       if (vis) shown++;
     });
     empty.style.display = shown ? 'none' : 'block';
+    if (deletedIds.length) {
+      restoreBar.style.display = 'block';
+      deletedCountEl.textContent = '삭제(숨김) 처리한 항목 ' + deletedIds.length + '건';
+    } else {
+      restoreBar.style.display = 'none';
+    }
   }
+
+  list.addEventListener('click', function (e) {
+    var delBtn = e.target.closest('[data-del]');
+    if (!delBtn) return;
+    var id = delBtn.dataset.del;
+    if (deletedIds.indexOf(id) === -1) {
+      deletedIds.push(id);
+      saveDeleted(deletedIds);
+    }
+    apply();
+  });
+
+  document.getElementById('restoreBtn').addEventListener('click', function () {
+    deletedIds = [];
+    saveDeleted(deletedIds);
+    apply();
+  });
 
   document.getElementById('q').addEventListener('input', function (e) { state.q = e.target.value; apply(); });
   document.getElementById('sort').addEventListener('change', function (e) { state.sort = e.target.value; apply(); });
