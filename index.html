@@ -65,12 +65,14 @@
     font-size: 14px; background: #fff; -webkit-appearance: none;
   }
   .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-  .pills.scroll {
-    flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
-    padding-bottom: 4px; scrollbar-width: none;
+  @media (max-width: 640px) {
+    .pills.scroll {
+      flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
+      padding-bottom: 4px; scrollbar-width: none;
+    }
+    .pills.scroll::-webkit-scrollbar { display: none; }
+    .pills.scroll .filter-pill { flex: 0 0 auto; }
   }
-  .pills.scroll::-webkit-scrollbar { display: none; }
-  .pills.scroll .filter-pill { flex: 0 0 auto; }
   .filter-pill {
     border: 1px solid var(--line); background: #fff; color: #475569;
     padding: 7px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; cursor: pointer;
@@ -125,7 +127,7 @@
   <header>
     <div>
       <h1>째린빵 · 블로그 협찬 대시보드</h1>
-      <div class="sub">업데이트 2026-11-14 19:35 · 네이버 메일(3/27~11/14) + 레뷰 선정 내역</div>
+      <div class="sub">업데이트 2026-11-14 19:37 · 네이버 메일(3/27~11/14) + 레뷰 선정 내역</div>
     </div>
     <span class="acct-badge">총 81건 · 공개용 요약본</span>
   </header>
