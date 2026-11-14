@@ -1,0 +1,2602 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#f8fafc" />
+<title>째린빵 · 블로그 협찬 대시보드</title>
+<style>
+  :root {
+    --bg: #f8fafc; --card: #ffffff; --text: #0f172a; --muted: #64748b;
+    --line: #e2e8f0; --accent: #2563eb;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: rgba(37,99,235,.12); }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.5;
+    padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 18px 16px 56px; }
+  header {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;
+    padding-bottom: 14px; border-bottom: 1px solid var(--line); margin-bottom: 16px;
+  }
+  header h1 { margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
+  .sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .acct-badge {
+    background: #eef2ff; color: #3730a3; font-size: 12px; font-weight: 600;
+    padding: 5px 10px; border-radius: 999px;
+  }
+  .alert-box {
+    background: #fff7ed; border: 1px solid #fed7aa; border-radius: 12px;
+    padding: 12px 14px; margin-bottom: 14px; font-size: 13px; color: #9a3412;
+  }
+  .alert-box strong { display: block; margin-bottom: 5px; font-size: 14px; }
+  .alert-box ol { margin: 0; padding-left: 18px; }
+  .alert-box li { margin-bottom: 3px; }
+  .plat-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .plat-chip {
+    background: #ffffff; border: 1px solid var(--line); border-radius: 10px;
+    padding: 7px 11px; font-size: 12px; color: #334155;
+  }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
+  @media (max-width: 640px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
+  .kpi {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px;
+    cursor: pointer; text-align: left; font: inherit; color: inherit;
+  }
+  .kpi:active { transform: scale(.985); }
+  .kpi .k-lbl { font-size: 12px; color: var(--muted); display: block; }
+  .kpi .k-val { font-size: 24px; font-weight: 800; margin-top: 2px; display: block; }
+  .kpi.k-wait { background: #fffbeb; } .kpi.k-wait .k-val { color: #d97706; }
+  .kpi.k-act { background: #eff6ff; } .kpi.k-act .k-val { color: #2563eb; }
+  .kpi.k-done { background: #ecfdf5; } .kpi.k-done .k-val { color: #059669; }
+
+  .toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; align-items: center; }
+  .search-input {
+    flex: 1 1 220px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px;
+    font-size: 16px; background: #fff; -webkit-appearance: none;
+  }
+  .sort-sel {
+    padding: 10px 10px; border: 1px solid var(--line); border-radius: 10px;
+    font-size: 14px; background: #fff; -webkit-appearance: none;
+  }
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .pills.scroll {
+    flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px; scrollbar-width: none;
+  }
+  .pills.scroll::-webkit-scrollbar { display: none; }
+  .pills.scroll .filter-pill { flex: 0 0 auto; }
+  .filter-pill {
+    border: 1px solid var(--line); background: #fff; color: #475569;
+    padding: 7px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; cursor: pointer;
+    font-family: inherit;
+  }
+  .filter-pill.active { background: #0f172a; color: #fff; border-color: #0f172a; }
+
+  .list { display: flex; flex-direction: column; gap: 10px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+  .card-urgent { border: 1.5px solid #fb923c; background: #fffdfb; }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+  .card-head { min-width: 0; }
+  .src-tag { font-size: 11px; color: #6366f1; font-weight: 700; display: block; margin-bottom: 2px; }
+  .brand { margin: 0; font-size: 16px; font-weight: 700; }
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pill { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
+  .cat-pill { background: #f1f5f9; color: #475569; }
+  .st-active { background: #dbeafe; color: #1e40af; }
+  .st-wait { background: #fef3c7; color: #92400e; }
+  .st-done { background: #dcfce7; color: #166534; }
+  .st-replied { background: #e0e7ff; color: #3730a3; }
+  .st-expired { background: #f1f5f9; color: #64748b; }
+  .card-sub { margin: 6px 0 10px; font-size: 13px; color: #475569; word-break: keep-all; }
+  .meta-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 14px; font-size: 12px;
+    background: #f8fafc; padding: 9px 11px; border-radius: 10px;
+  }
+  @media (max-width: 520px) { .meta-grid { grid-template-columns: 1fr; } }
+  .meta-grid .lbl { color: var(--muted); margin-right: 6px; font-weight: 600; }
+  .meta-grid .val { color: var(--text); word-break: keep-all; }
+  .card-details { margin-top: 9px; font-size: 13px; }
+  .card-details summary {
+    cursor: pointer; color: #2563eb; font-weight: 600; font-size: 12px;
+    list-style: none; padding: 4px 0;
+  }
+  .card-details summary::-webkit-details-marker { display: none; }
+  .card-details summary::before { content: "＋ "; }
+  .card-details[open] summary::before { content: "－ "; }
+  .detail-body { padding-top: 6px; color: #334155; }
+  .summary-txt { margin: 4px 0; word-break: keep-all; }
+  .terms { margin: 6px 0; padding-left: 18px; }
+  .terms li { margin-bottom: 2px; word-break: keep-all; }
+  .evidence, .sender { margin: 4px 0; font-size: 12px; color: #475569; }
+  .muted { color: var(--muted); }
+  .ext-link { display: inline-block; margin-top: 6px; font-size: 12px; font-weight: 700; color: #2563eb; text-decoration: none; }
+  .empty { display: none; text-align: center; color: var(--muted); font-size: 13px; padding: 28px 0; }
+  .footer-note { margin-top: 24px; font-size: 11px; color: var(--muted); text-align: center; line-height: 1.7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>째린빵 · 블로그 협찬 대시보드</h1>
+      <div class="sub">업데이트 2026-11-14 19:31 · 네이버 메일(3/27~11/14) + 레뷰 선정 내역</div>
+    </div>
+    <span class="acct-badge">총 81건 · 공개용 요약본</span>
+  </header>
+
+  <div class="alert-box">
+    <strong>⚠️ 지금 바로 챙길 일정 (레뷰 선정 2건 · 체험권 미사용)</strong>
+    <ol>
+      <li><b>바앤복하우스 잠실점</b> — 콘텐츠 마감 <b>2026-11-19</b> · 5일 전 체험권 내 예약 필수</li>
+      <li><b>셀리에 성수</b> — 콘텐츠 마감 <b>2026-11-24</b> · 선정 후 1~2일 내 예약 조율 조건</li>
+    </ol>
+    <span style="color:#7c2d12;">※ 리뷰노트 페널티 2회 누적(3회 시 영구정지) 상태라 마감일 관리에 유의해 주세요.</span>
+  </div>
+
+  <div class="plat-row">
+    <div class="plat-chip"><strong>레뷰</strong> · 선정 0건 · 신청 0건</div><div class="plat-chip"><strong>디너의여왕</strong> · 선정 0건 · 신청 0건</div><div class="plat-chip"><strong>리뷰노트</strong> · 선정 0건 · 신청 0건</div>
+  </div>
+
+  <section class="kpis">
+    <button class="kpi" data-kpi="all"><span class="k-lbl">전체 협찬</span><span class="k-val">81건</span></button>
+    <button class="kpi k-act" data-kpi="진행 중"><span class="k-lbl">진행·선정 중</span><span class="k-val">3건</span></button>
+    <button class="kpi k-wait" data-kpi="검토 대기"><span class="k-lbl">검토 대기</span><span class="k-val">46건</span></button>
+    <button class="kpi k-done" data-kpi="done_all"><span class="k-lbl">회신·완료</span><span class="k-val">7건</span></button>
+  </section>
+
+  <div class="toolbar">
+    <input id="q" class="search-input" type="search" placeholder="업체명, 제공 내역, 조건 검색" autocomplete="off" />
+    <select id="sort" class="sort-sel">
+      <option value="default">기본 정렬 (진행 중 우선)</option>
+      <option value="newest">최신순</option>
+      <option value="oldest">오래된순</option>
+      <option value="brand">업체명순</option>
+    </select>
+  </div>
+
+  <div class="pills scroll" id="statusPills">
+    <button class="filter-pill active" data-st="all">전체 (81)</button>
+    <button class="filter-pill" data-st="진행 중">진행·선정 중 (3)</button>
+    <button class="filter-pill" data-st="검토 대기">검토 대기 (46)</button>
+    <button class="filter-pill" data-st="done_all">회신·완료 (7)</button>
+    <button class="filter-pill" data-st="마감 지남">마감 지남 (25)</button>
+  </div>
+
+  <div class="pills scroll" id="catPills">
+    <button class="filter-pill active" data-cat="all">전체 카테고리</button><button class="filter-pill" data-cat="뷰티 / 미용실(헤어)">뷰티 / 미용실(헤어)</button><button class="filter-pill" data-cat="피부과·시술">피부과·시술</button><button class="filter-pill" data-cat="운동·웰니스">운동·웰니스</button><button class="filter-pill" data-cat="리빙·생활">리빙·생활</button><button class="filter-pill" data-cat="맛집·카페">맛집·카페</button><button class="filter-pill" data-cat="여행·숙소">여행·숙소</button><button class="filter-pill" data-cat="뷰티 제품">뷰티 제품</button><button class="filter-pill" data-cat="스튜디오·사진">스튜디오·사진</button><button class="filter-pill" data-cat="문화·공연">문화·공연</button><button class="filter-pill" data-cat="플랫폼·제휴">플랫폼·제휴</button><button class="filter-pill" data-cat="기자단·체험단 모집">기자단·체험단 모집</button>
+  </div>
+
+  <main class="list" id="cardList">
+    
+    <article class="card card-urgent" data-idx="0" data-status="진행 중" data-cat="뷰티 / 미용실(헤어)" data-date="2026-11-19" data-brand="바앤복하우스 잠실점">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">레뷰 선정</span>
+          <h3 class="brand">바앤복하우스 잠실점</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">뷰티 / 미용실(헤어)</span>
+          <span class="pill st-active">진행 중</span>
+        </div>
+      </div>
+      <p class="card-sub">[레뷰] [송파] 바앤복하우스 잠실점</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">펌, 컬러, 커트 중 택1 (남성 체험 가능 / 대리 체험 가능·블로거 동일 연령)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">체험권 제공 (예약금은 방문 시 환불)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">콘텐츠 마감 2026-11-19 · 마감일 5일전 · 체험권 미사용</span></div>
+        <div><span class="lbl">채널</span><span class="val">네이버 블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">방문 예약 + 콘텐츠 등록 (D-5). 체험권 미사용 상태이므로 예약이 아직 안 된 것으로 보임 / 잠실/송리단길</p>
+          <ul class='terms'><li>콘텐츠 마감: 2026-11-19</li><li>콘텐츠 등록기간: 2026-11-06 ~ 2026-11-19</li><li>방문 가능: 월~목 10:00~17:30 (5일 전 체험권 내 예약 필수, 당일 예약 불가)</li><li>위치: 잠실/송리단길</li><li>얼굴 노출 필수(모자이크 불가)</li><li>예약금 있음 — 방문 시 환불</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 레뷰 선정 · 마감일 5일전 · 체험권 미사용</p>
+          <p class="sender"><strong>발신:</strong> 레뷰 · <span class="muted">수신 2026-11-19</span></p>
+          <a class="ext-link" href="https://www.revu.net/campaign/1426585" target="_blank" rel="noopener">캠페인 페이지 열기 ↗</a>
+        </div>
+      </details>
+    </article>
+    <article class="card card-urgent" data-idx="1" data-status="진행 중" data-cat="뷰티 / 미용실(헤어)" data-date="2026-11-24" data-brand="셀리에 성수 (SELYIE)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">레뷰 선정</span>
+          <h3 class="brand">셀리에 성수 (SELYIE)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">뷰티 / 미용실(헤어)</span>
+          <span class="pill st-active">진행 중</span>
+        </div>
+      </div>
+      <p class="card-sub">[레뷰] [성수] 셀리에 성수</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">A.커트 / B.염색 / C.레이어드펌 중 택1 (1인 제공, 남성 체험 불가, 대리인 가능·동일 연령대)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">체험권 제공 (예약금은 방문 시 환불)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">콘텐츠 마감 2026-11-24 · 마감일 10일전 · 체험권 미사용 · 대리인가능</span></div>
+        <div><span class="lbl">채널</span><span class="val">네이버 블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">방문 예약 + 콘텐츠 등록 (D-10). 체험권 미사용 상태 — 예약 조율 기한(선정 후 1~2일)이 이미 지난 것으로 보임 / 성수동</p>
+          <ul class='terms'><li>콘텐츠 마감: 2026-11-24</li><li>콘텐츠 등록기간: 2026-11-12 ~ 2026-11-24</li><li>방문 가능: 방문 가능 월·수·목·금 10:30~16:30 (영업 10:30~19:30, 매주 화 정기휴무)</li><li>위치: 성수동</li><li>선정 발표 후 1~2일 내 업체 예약 조율 필수(마감 임박 문의 시 불가할 수 있음)</li><li>얼굴 노출 가능자만 신청 가능</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 레뷰 선정 · 마감일 10일전 · 체험권 미사용 · 대리인가능</p>
+          <p class="sender"><strong>발신:</strong> 레뷰 · <span class="muted">수신 2026-11-24</span></p>
+          <a class="ext-link" href="https://www.revu.net/campaign/1427110" target="_blank" rel="noopener">캠페인 페이지 열기 ↗</a>
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="2" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-11-13" data-brand="답십리 안경원 · 서초 피부과">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">답십리 안경원 · 서초 피부과</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 답십리 안경 &amp; 서초 지방분해주사 체험단 모집</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">안경+렌즈 5만원 / 지방분해주사 최대 3부위 1회(105만원 상당, 인스타 릴스는 얼굴3+전신3부위 220만원 상당)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">상시 모집(체험 가능 평일·일요일 11:00~18:30)</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 / 인스타 피드 / 인스타 릴스</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">답십리 안경원(5만원 상당 안경+렌즈)과 서초 피부과 지방분해주사 체험단을 함께 안내. 네이버 신청 링크 방식.</p>
+          <ul class='terms'><li>블로그/인스타 피드/릴스 중 선택</li><li>지방분해주사 최대 3부위 1회</li><li>평일 11~18:30 방문</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 체험단 모집 대행 · <span class="muted">수신 2026-11-13</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="3" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-11-05" data-brand="선릉역 피부과(블로그체험단)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">선릉역 피부과(블로그체험단)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) [서울 선릉역] 포텐자펌핑팁 / 리니어지 블로그체험단 모집</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">포텐자 펌핑팁 또는 리니어지 리프팅 中 택1 1회</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">선정 후 개별 안내(평일 방문)</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">선릉역 인근 병원에서 포텐자 펌핑팁(스킨부스터) 또는 리니어지(HIFU) 중 하나를 체험. 체험 1~2주 내 포스팅 필수.</p>
+          <ul class='terms'><li>시술 택1</li><li>체험일로부터 1~2주 내 포스팅</li><li>최근 3개월 유사 시술 이력 시 제한</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 블로그체험단 모집 · <span class="muted">수신 2026-11-05</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="4" data-status="마감 지남" data-cat="운동·웰니스" data-date="2026-10-22" data-brand="리프리다 분당점">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">리프리다 분당점</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">운동·웰니스</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) [분당] 나다운 라인을 찾아가는 가을, 체형관리 체험에 초대해요</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">발레 EMS + 순환 EMS 프리미엄 관리 1회(정상가 30만원)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">신청 ~10/23, 체험 10/25~11/4</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">분당 서현역 인근 체형관리샵 발레 EMS+순환 EMS 1회 체험. 평일 예약만 가능, 사진 12장·영상 1개 조건.</p>
+          <ul class='terms'><li>사진 12장 이상 + 영상 1개</li><li>필수 키워드 사용</li><li>평일 예약만 가능</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 마감(10/23) 경과</p>
+          <p class="sender"><strong>발신:</strong> 리뷰나비 · <span class="muted">수신 2026-10-22</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="5" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-10-16" data-brand="뷰티인팩트(강남 피부과)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">뷰티인팩트(강남 피부과)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">[협찬] 강남 피부과 시술 체험단 진행 제안드립니다</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">울타늄(울쎄라+티타늄) 1회</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">강남 피부과 울타늄 시술 체험 제안. 카톡 채널로 성함·블로그 주소·희망 시술 전달하면 진행.</p>
+          <ul class='terms'><li>블로그 후기 1회</li><li>시술 전/후 사진 전달</li><li>카톡 채널 접수</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 뷰티인팩트 · <span class="muted">수신 2026-10-16</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="6" data-status="검토 대기" data-cat="리빙·생활" data-date="2026-10-14" data-brand="답십리 안경원 · 종로 예물샵 · 사전점검 서비스">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">답십리 안경원 · 종로 예물샵 · 사전점검 서비스</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">리빙·생활</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 답십리 안경 &amp; 종로 주얼리 &amp; 신축 아파트 셀프 사전점검 서비스 블로그체험단 모집</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">안경+렌즈 5만원 / 실버 귀걸이·목걸이 세트 10만원 상당 / 신축 아파트 셀프 사전점검 이용권</span></div>
+        <div><span class="lbl">원고료</span><span class="val">원고료 5천원 추가(사전점검 건)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">세 가지 체험단 묶음 안내(안경원·예물샵·신축 아파트 사전점검 서비스). 사전점검 건은 원고료 5천원 추가.</p>
+          <ul class='terms'><li>3개 캠페인 중 선택</li><li>사전점검 건 원고료 5천원</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 체험단 모집 대행 · <span class="muted">수신 2026-10-14</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="7" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-10-13" data-brand="논현동 피부과">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">논현동 피부과</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">[논현역피부과] 빵먹는째린빵님, 프라이빗 온다리프팅 VIP 체험단 제안드립니다</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">온다(ONDA) 리프팅 맞춤 시술 전액 지원 + 프라이빗룸 1:1 상담</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">선정 후 개별 안내</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">논현동 피부과 프라이빗 온다리프팅 VIP 체험 제안. 사진 10장+영상 1개, 병원명 비노출 조건.</p>
+          <ul class='terms'><li>사진 10장 이상 + 10초 영상</li><li>병원 상호 노출 지양</li><li>권장 키워드 2~3개</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 피부과체험단 모집 · <span class="muted">수신 2026-10-13</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="8" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-10-09" data-brand="강남 압구정 안과">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">강남 압구정 안과</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 강남 압구정 안과에서 아이링 체험단을 모집합니다 · 인스타그램 공개 계정 대상</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">아이링 수술 무상 지원(500만원 상당)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">선정 후 개별 일정</span></div>
+        <div><span class="lbl">채널</span><span class="val">인스타그램 피드 3건</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">압구정 안과 아이링 수술 체험단(모집 1명). 인스타 공개 계정 필수, 피드 3건 업로드 조건.</p>
+          <ul class='terms'><li>모집 1명</li><li>인스타 피드 3건</li><li>인스타 공개 계정 보유</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신·신청 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 동네검증단(PLATEMEDIA) · <span class="muted">수신 2026-10-09</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="9" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-10-08" data-brand="가이아랩스">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">가이아랩스</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">[협업 제안] 블로그 콘텐츠 협업 제안드립니다.</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">쁘띠시술 + AI 피부진단 (30만원 이상 상당)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">쁘띠시술+AI진단 30만원 상당 블로그 협업 제안. 회신 시 병의원·시술 상세 안내.</p>
+          <ul class='terms'><li>회신 시 병원·시술 확정</li><li>카톡 플러스친구 접수</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 가이아랩스(뷰티 체험단) · <span class="muted">수신 2026-10-08</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="10" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-10-06" data-brand="압구정피부과">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">압구정피부과</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">[압구정피부과] 피부과 전문의 1:1 맞춤 시술 체험단으로 정중히 초대합니다</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">울쎄라/써마지 30% 할인, 스킨부스터, 보톡스, 온다리프팅, 티타늄, 레비나스, 포텐자 中 1개</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형, 울쎄라·써마지는 30% 할인)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">선정 후 개별 안내</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">압구정로 피부과 전문의 1:1 시술 체험단 초대. 시술 1개 선택, 사진 10장+영상 1개, 시술 전후 사진 마케팅 활용 동의 필요.</p>
+          <ul class='terms'><li>시술 1개 택1</li><li>전후 사진 마케팅 활용 동의</li><li>병원명 미노출</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 압구정피부과 담당자 · <span class="muted">수신 2026-10-06</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="11" data-status="검토 대기" data-cat="운동·웰니스" data-date="2026-09-15" data-brand="빌드업피트니스 성수역점">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">빌드업피트니스 성수역점</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">운동·웰니스</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">[커넥트리플] 성수 헬스장 PT 2회 체험단 제안건</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">PT 2회 + 헬스장 1개월 이용권</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">성수 빌드업피트니스 PT 2회+1개월 이용권 체험단. 회신 시 참여 방법·일정 안내.</p>
+          <ul class='terms'><li>포스팅 1회</li><li>성수 지역 직장인 타깃</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 커넥트리플 · <span class="muted">수신 2026-09-15</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="12" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-09-14" data-brand="대구 동성로 한의원">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">대구 동성로 한의원</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 대구 동성로 인스타그램 릴스 체험단 · 편평사마귀 무제한 제거 + 3만원 제공</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">편평사마귀 무제한 제거 + 콘텐츠 완료 후 3만원</span></div>
+        <div><span class="lbl">원고료</span><span class="val">3만원(콘텐츠 완료 후)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">신청 마감 2026-08-28(안내 시점 기준 이미 경과)</span></div>
+        <div><span class="lbl">채널</span><span class="val">인스타 릴스 1건</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">대구 동성로 한의원 편평사마귀 제거+3만원 릴스 체험단(5명). 팔로워 1만 이상 공개 계정 대상.</p>
+          <ul class='terms'><li>모집 5명</li><li>팔로워 1만 이상</li><li>병원명 비노출</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 마감 경과</p>
+          <p class="sender"><strong>발신:</strong> 동네검증단(PLATEMEDIA) · <span class="muted">수신 2026-09-14</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="13" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-09-13" data-brand="피롤츠커피하우스 (회현점·시청점)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">피롤츠커피하우스 (회현점·시청점)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">맛집·카페</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) [협찬 제안서] 피롤츠커피하우스(@pirultz_coffeehouse) 회현점/시청점</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">음료 2종(주류 제외) + 디저트 2종, 2인 방문</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">방문일 7일 이내 발행</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">명동/회현·시청 카페 협찬. 지정 키워드 삽입, 방문 7일 내 네이버 블로그 발행. 매장·날짜·시간 회신으로 예약 확정.</p>
+          <ul class='terms'><li>방문일 7일 이내 발행</li><li>지정 키워드 삽입</li><li>2인 방문 가능</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 피롤츠커피하우스 · <span class="muted">수신 2026-09-13</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="14" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-09-11" data-brand="강남역 피부과">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">강남역 피부과</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">💙 피부과 블로그 체험단 모집 💙</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">컴포트 리쥬란/컴포트 리투오/포토나 레이저/바디 온다/바디 모노실 中 1가지</span></div>
+        <div><span class="lbl">원고료</span><span class="val">계정 규모에 따라 원내 시술 크레딧</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">강남역 피부과 컴포트 시술 체험단. 시술 후 3주 내 업로드, 1년 이상 게시 유지 조건.</p>
+          <ul class='terms'><li>시술 후 3주 내 업로드</li><li>1년 이상 게시 유지</li><li>시술 장면 사진 3~4장 필수</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 체험단 모집 담당 · <span class="muted">수신 2026-09-11</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="15" data-status="검토 대기" data-cat="여행·숙소" data-date="2026-09-09" data-brand="트래비티(Trevity)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">트래비티(Trevity)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">여행·숙소</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">째린빵님께 해외여행 체험 협업을 제안드립니다</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">해외 호텔·리조트·레스토랑·마사지·액티비티 체험 캠페인(베트남 중심)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">캠페인별 상이(미기재)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">상시(캠페인별)</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">글로벌 체험 플랫폼 트래비티의 해외여행 캠페인 초대. 호이안 리조트·호치민 다이닝 등, 여행 일정 있을 때 참여 가능.</p>
+          <ul class='terms'><li>여행 일정 필요</li><li>캠페인 페이지에서 상세 확인</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 트래비티 · <span class="muted">수신 2026-09-09</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="16" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-08-31" data-brand="서오릉순메밀막국수 · 서오릉불고기">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">서오릉순메밀막국수 · 서오릉불고기</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">맛집·카페</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고)[서오릉 인기맛집/2곳] 들기름막국수+보쌈조합 / 산더미등심불고기+셀프바</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">2인 42,000원 / 3인 54,000원 / 4인 66,000원 상당 식사(막국수+수육), 불고기 2인 5.5만~4인 6.5만</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">서오릉 맛집 2곳(막국수·불고기) 체험 모집. 방문 업체·이름·연락처·블로그·희망일시 회신 또는 구글폼 신청.</p>
+          <ul class='terms'><li>인원수별 식사권</li><li>화요일 휴무(막국수)</li><li>구글폼/카톡 신청</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 아임파블 · <span class="muted">수신 2026-08-31</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="17" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-31" data-brand="강남 논현역 피부과">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">강남 논현역 피부과</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">💙 블로그 체험단 모집 💙</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">소유다운 주사(지방분해) 얼굴·바디 시술 1회</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">확정 후 조율</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회 + 영수증 리뷰</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">강남 논현역 피부과 지방분해주사 체험단. 시술 외 항목 불가, 보증금 계좌이체 조건 있음.</p>
+          <ul class='terms'><li>소유다운 주사만 가능</li><li>보증금 있음</li><li>카톡 오픈채팅 신청</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 체험단 모집 담당 · <span class="muted">수신 2026-08-31</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="18" data-status="마감 지남" data-cat="리빙·생활" data-date="2026-08-26" data-brand="욕실 선물세트(배송형)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">욕실 선물세트(배송형)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">리빙·생활</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 욕실 선물세트 블로그 체험단 캠페인 참여 가능하실까요~?</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">핸드워시·퍼퓸 바디워시·샤워볼·전용패드·파우치·메시지카드(7만원 상당)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">제품 배송 9/1~9/2, 수취 후 7일 내 포스팅</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">욕실 선물세트 배송형 체험단. 원고 1,100자·사진 15장·영상 20초, 카톡 선물하기 링크 필수.</p>
+          <ul class='terms'><li>일방문자 200명 이상 우대</li><li>원고 1,100자·사진 15장</li><li>카톡 선물하기 링크 필수</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 배송·포스팅 기간 경과</p>
+          <p class="sender"><strong>발신:</strong> 캠페인 리뷰어 모집 · <span class="muted">수신 2026-08-26</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="19" data-status="마감 지남" data-cat="리빙·생활" data-date="2026-08-23" data-brand="상동메가빅약국">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">상동메가빅약국</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">리빙·생활</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) [1차 신청 가능 안내] 상동메가빅약국 · 9월 17일 마감</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">2만원 내 자유이용권</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">신청 마감 2026-09-17</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">부천 상동 약국 2만원 이용권 체험단(모집 4명).</p>
+          <ul class='terms'><li>모집 4명</li><li>방문형</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 마감(9/17) 경과</p>
+          <p class="sender"><strong>발신:</strong> 동네검증단(PLATEMEDIA) · <span class="muted">수신 2026-08-23</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="20" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-08-21" data-brand="을지로 피부과">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">을지로 피부과</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) [서울 을지로] [블로그] 스킨부스터 시술 협찬해드립니다.</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">큐티온 NMN 스킨부스터 시술 1회</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">신청 8/22(수시 선정·조기마감)</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">을지로 피부과 큐티온 NMN 스킨부스터 체험. 얼굴 노출 필수, 체험 후 7일경 비포&amp;애프터 리뷰.</p>
+          <ul class='terms'><li>얼굴 노출 필수</li><li>7일 후 비포&amp;애프터 리뷰</li><li>비공개 캠페인</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 기간 경과</p>
+          <p class="sender"><strong>발신:</strong> 리뷰나비 · <span class="muted">수신 2026-08-21</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="21" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-08-21" data-brand="크레센트421 일산점">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">크레센트421 일산점</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">뷰티 제품</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) [1차 지역 우선 모집] 크레센트421 일산눈썹문신 · 9월 16일 마감</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">자연눈썹·콤보눈썹·남자자연눈썹·입술문신·헤어라인문신 中 택1</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">신청 마감 2026-09-16</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">일산 반영구(눈썹문신 등) 체험단(모집 3명).</p>
+          <ul class='terms'><li>모집 3명</li><li>택1 시술</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 마감(9/16) 경과</p>
+          <p class="sender"><strong>발신:</strong> 동네검증단(PLATEMEDIA) · <span class="muted">수신 2026-08-21</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="22" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-08-20" data-brand="강남역 인근 피부과">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">강남역 인근 피부과</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고)★[강남] 완전 비절개★ 눈밑지방재배치 촬영 모델 모집</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">비절개 눈밑지방재배치(필요 시 필러 병행) 150만원 상당, 5명</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">2026-08-25 10시 방문 필수</span></div>
+        <div><span class="lbl">채널</span><span class="val">병원 마케팅 촬영(개인 SNS 업로드 아님)</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">강남역 피부과 눈밑지방재배치 촬영 모델 모집. 개인 SNS가 아닌 병원 채널용 촬영, 보증금 있음.</p>
+          <ul class='terms'><li>병원 채널 촬영(개인 업로드 아님)</li><li>얼굴 전체 노출</li><li>보증금</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 촬영일(8/25) 경과</p>
+          <p class="sender"><strong>발신:</strong> 블로그체험단 모집 · <span class="muted">수신 2026-08-20</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="23" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-08-20" data-brand="크레센트421 강남점">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">크레센트421 강남점</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">뷰티 제품</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) [1차 우선 신청 안내] 크레센트421 강남눈썹문신</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">눈썹·입술·헤어라인 반영구 中 택1</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">신청 마감 2026-09-16</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">서초 크레센트421 강남점 반영구 체험단(모집 3명, 신청 0명 상태로 안내).</p>
+          <ul class='terms'><li>모집 3명</li><li>택1 시술</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 마감(9/16) 경과</p>
+          <p class="sender"><strong>발신:</strong> 동네검증단(PLATEMEDIA) · <span class="muted">수신 2026-08-20</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="24" data-status="마감 지남" data-cat="운동·웰니스" data-date="2026-08-15" data-brand="마에스트로 주짓수 삼덕점">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">마에스트로 주짓수 삼덕점</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">운동·웰니스</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) [1차 우선 안내] 마에스트로 주짓수 삼덕점 · 7일 무료이용권 + 고급도복 무료대여</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">7일 무료이용권 + 고급 도복 무료 대여</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">신청 마감 2026-09-11</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">대구 삼덕 주짓수 7일 무료이용권+도복 대여 체험단(모집 5명). 같은 메일에 평택·청주 등 다른 캠페인도 함께 안내.</p>
+          <ul class='terms'><li>모집 5명</li><li>방문형(대구)</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 마감(9/11) 경과</p>
+          <p class="sender"><strong>발신:</strong> 동네검증단(PLATEMEDIA) · <span class="muted">수신 2026-08-15</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="25" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-14" data-brand="압구정 프리미엄 피부과">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">압구정 프리미엄 피부과</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">[체험단 모집] 압구정 프리미엄 피부과 방문 체험단 협업 제안드립니다 :)</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">국산 필러 2cc(90만원 상당) / 수입 눈밑필러 1cc(70만원) / 실리프팅 4~6줄(80~120만원) 中 택1</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형, 예약보증금 10만원 후 환급)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재(방문일 기준 3주 내 후기)</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">압구정 피부과 필러·실리프팅 체험단(각 2팀). 이미지 15장, 예약보증금 10만원(후기 확인 후 환급).</p>
+          <ul class='terms'><li>희망 시술·방문일·블로그 주소 회신</li><li>이미지 15장 이상</li><li>보증금 10만원</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 피부과 체험단 담당(김채운) · <span class="muted">수신 2026-08-14</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="26" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-13" data-brand="조서이(강남 피부과)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">조서이(강남 피부과)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">안녕하세요 강남 피부과 협찬 제안드립니다.</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">색소레이저/포텐자/인모드/스킨부스터/필러/보톡스/윤곽주사/스킨케어 中 1가지</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재(시술 후 1주 내 블로그)</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 + 네이버·구글 리뷰 + 카페 후기</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">강남 피부과 8개 프로그램 중 1개 체험. 내원 당일 네이버·구글 리뷰, 1주 내 블로그·카페 후기까지 요구(미션 많음).</p>
+          <ul class='terms'><li>리뷰 4종(네이버·구글·블로그·카페)</li><li>before/after 필수</li><li>평일 월~목 위주</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 개인 섭외 · <span class="muted">수신 2026-08-13</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="27" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-11" data-brand="코엑스 앞 피부과">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">코엑스 앞 피부과</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">시술 후 원고작성하실 분을 모집합니다.</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">레이저리프팅·필러·쥬베룩 등 中 선택</span></div>
+        <div><span class="lbl">원고료</span><span class="val">원고료(원문에 금액 미기재)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">코엑스 앞 피부과에서 원고 작성 블로거 모집. 설문 링크로 희망 시술 접수 후 개별 연락.</p>
+          <ul class='terms'><li>설문 지원</li><li>시술 선택 가능</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 한효솔 · <span class="muted">수신 2026-08-11</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="28" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-10" data-brand="V&amp;MJ 피부과(청담)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">V&amp;MJ 피부과(청담)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">안녕하세요 청담동 V&amp;MJ피부과 에서 체험단 작업 제안드립니다</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">AI울쎄라 또는 히트업써마지 체험</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">청담 V&amp;MJ피부과 신규 리프팅(AI울쎄라·히트업써마지) 체험단 모집.</p>
+          <ul class='terms'><li>신규 장비 런칭 체험</li><li>맞춤 리프팅</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 김민주 · <span class="muted">수신 2026-08-10</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="29" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-10" data-brand="강남역 성형외과">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">강남역 성형외과</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">💙 피부과 블로그 체험단 모집 💙</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">스킨부스터(리투오)·실리프팅·필러·립쥬란·눈수술 中 선택</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">확정 후 조율(화~금 10:30~17:00)</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">강남역 성형외과 체험단. 상담 후 시술 결정, 포스팅 1년 이상 유지.</p>
+          <ul class='terms'><li>포스팅 1년 이상 유지</li><li>화~금만 방문</li><li>카톡 신청</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 안현영 · <span class="muted">수신 2026-08-10</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="30" data-status="검토 대기" data-cat="뷰티 제품" data-date="2026-08-08" data-brand="페이스팩토리">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">페이스팩토리</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">뷰티 제품</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">째린빵님 협찬 제안 메일 송부 드려요!</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">올레샷 해독 클렌저(오일투폼 디톡스 클렌저) 제품 제공</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">뷰티 디바이스·더마케어 브랜드 페이스팩토리의 클렌저 협찬 제안. 구글폼 신청 후 개별 안내.</p>
+          <ul class='terms'><li>제품 배송형</li><li>구글폼 신청</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 구글폼 신청 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 페이스팩토리 담당자 · <span class="muted">수신 2026-08-08</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="31" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-08-07" data-brand="천호 미용실">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">천호 미용실</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">뷰티 제품</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 인생 머리 찾아드려요 (염색/클리닉 택1)</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">디자이너 염색 또는 클리닉 무료(퍼스널 상담 포함)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">모집 ~8/12, 방문·리뷰 ~8/27</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">천호 미용실 염색/클리닉 체험. 20~40대 여성 블로거, 대리 체험 불가, 월~목 11~19시.</p>
+          <ul class='terms'><li>20~40대 여성</li><li>비포&amp;애프터 필수</li><li>월~목만 가능</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 모집·체험 기간 경과</p>
+          <p class="sender"><strong>발신:</strong> 리뷰나비 · <span class="muted">수신 2026-08-07</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="32" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-05" data-brand="잠실 프리미엄 피부과">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">잠실 프리미엄 피부과</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">[체험단 모집] 잠실 프리미엄 피부과 방문 체험단 모집합니다 :)</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">리프팅·필러/스킨보톡스·물광/리쥬란·여드름/색소 中 각 1개씩 총 2가지</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형, 예약보증금 5만원 환급)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재(2~4주 내 후기)</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">잠실새내 피부과 2개 시술 체험단. 사진 15장 이상, 예약보증금 5만원(후기 확인 후 환급).</p>
+          <ul class='terms'><li>시술 2가지 선택</li><li>사진 15장 이상</li><li>보증금 5만원</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 피부과 체험단 담당(김채운) · <span class="muted">수신 2026-08-05</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="33" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-05" data-brand="영영영의원(신논현)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">영영영의원(신논현)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">협찬 제안드립니다.</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">온다 리프팅(바디 가능)·쥬베룩 볼륨·쥬베룩 아이 中 택1</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">시술일로부터 14일 이내 결과물</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">신논현역 영영영의원 시술 1회 협찬 제안. 블로그 포스팅 1건, 14일 내 결과물 전달.</p>
+          <ul class='terms'><li>시술 택1</li><li>14일 내 결과물</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 000clinic · <span class="muted">수신 2026-08-05</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="34" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-05" data-brand="디피체험단(청담 리앤델의원 등)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">디피체험단(청담 리앤델의원 등)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">[체험단 모집] 강남권 인기 시술 무료 체험! 리쥬란, 쥬베룩, 다이어트한약, 코성형</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">포텐리쥬베룩 등 시술 中 택1</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재(선정까지 시일 소요)</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">청담 리앤델의원 등 강남권 시술 무료 체험단 통합 모집. 구글폼으로 지원.</p>
+          <ul class='terms'><li>통합 구글폼 지원</li><li>미선정 시 개인정보 파기</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 구글폼 신청 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 디피체험단 · <span class="muted">수신 2026-08-05</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="35" data-status="검토 대기" data-cat="스튜디오·사진" data-date="2026-08-03" data-brand="오디티모드(잠실 셀프사진관)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">오디티모드(잠실 셀프사진관)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">스튜디오·사진</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">[협찬] 셀프사진관 오디티모드 촬영권 협찬 드립니다.</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">6만원 상당 촬영권(20분 무제한 촬영)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">방문 후 1주일 이내 후기</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">잠실 셀프사진관 촬영권 협찬. 제목·본문 키워드 삽입과 네이버 플레이스 링크 등 가이드 조건.</p>
+          <ul class='terms'><li>&#x27;잠실 셀프사진관&#x27; 키워드 3회 이상</li><li>플레이스 링크 삽입</li><li>1주 내 후기</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 오디티모드 · <span class="muted">수신 2026-08-03</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="36" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-08-03" data-brand="돈블리마케팅(선릉·압구정 피부과)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">돈블리마케팅(선릉·압구정 피부과)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">[광고]선릉역, 압구정로데오역 피부과 블로그 체험단 모집 안내</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">피부과 방문 체험(상담 후 시술)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">선릉·압구정로데오 피부과 블로그 체험단. 병원 SNS 촬영 동의 시 선정 확률 상승 안내.</p>
+          <ul class='terms'><li>구글폼 신청</li><li>병원 SNS 촬영 동의 우대</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 구글폼 신청 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 돈블리마케팅 김수연 · <span class="muted">수신 2026-08-03</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="37" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-07-31" data-brand="용산 병원(덴서티)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">용산 병원(덴서티)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) [서울 용산] 덴서티 알파팁 리프팅 블로그체험단 모집</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">덴서티 알파팁 600샷 1회</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">선정 후 평일 방문</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">용산 병원 덴서티 알파팁(모노+바이폴라 고주파) 리프팅 체험. 3개월 내 리프팅 이력 있으면 불가.</p>
+          <ul class='terms'><li>600샷 1회</li><li>비포&amp;애프터 필수</li><li>3개월 내 리프팅 이력 제한</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 블로그체험단 모집 · <span class="muted">수신 2026-07-31</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="38" data-status="마감 지남" data-cat="운동·웰니스" data-date="2026-07-29" data-brand="댄스인 스튜디오(파주)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">댄스인 스튜디오(파주)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">운동·웰니스</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) [1차 신청 안내] 댄스인 스튜디오 신청 안내</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">3회 클래스 이용권</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">신청 마감 2026-08-23</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">파주 댄스인 스튜디오 3회 클래스 체험단(모집 10명).</p>
+          <ul class='terms'><li>모집 10명</li><li>방문형(파주)</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 마감(8/23) 경과</p>
+          <p class="sender"><strong>발신:</strong> 동네검증단(PLATEMEDIA) · <span class="muted">수신 2026-07-29</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="39" data-status="검토 대기" data-cat="리빙·생활" data-date="2026-07-27" data-brand="코칸(COKAN)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">코칸(COKAN)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">리빙·생활</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">[코칸] 네이버 1등 우디향 디퓨저 브랜드 &#x27;코칸&#x27; 블로그 체험단 제안의건</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">오브제 디퓨저(베스트 제품) 제품 제공</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">디퓨저 브랜드 코칸의 오브제 디퓨저 체험단 제안. 구글폼 신청 후 순차 가이드.</p>
+          <ul class='terms'><li>제품 제공형</li><li>구글폼 신청</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 구글폼 신청 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> PR COKAN · <span class="muted">수신 2026-07-27</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="40" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-07-24" data-brand="슈퍼왁싱 강남">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">슈퍼왁싱 강남</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">뷰티 제품</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) [1차 신규 모집] 슈퍼왁싱 강남</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">브라질리언·눈썹왁싱·헤어라인왁싱·다리절반·팔절반 中 택1</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">신청 마감 2026-08-26</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">강남 슈퍼왁싱 체험단(모집 5명).</p>
+          <ul class='terms'><li>모집 5명</li><li>택1 시술</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 마감(8/26) 경과</p>
+          <p class="sender"><strong>발신:</strong> 동네검증단(PLATEMEDIA) · <span class="muted">수신 2026-07-24</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="41" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-07-23" data-brand="강남 피부과(뉴비쥬)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">강남 피부과(뉴비쥬)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 💜 뉴비쥬 턱밑지방주사 체험단 모집 💜</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">뉴비쥬 이중턱 지방분해주사 1회</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">선정 후 평일 예약</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">강남·송도 피부과 뉴비쥬(콜산 성분) 턱밑지방주사 체험. 얼굴 노출, 전후사진 6장 이상, 원고 1차 컨펌 후 업로드.</p>
+          <ul class='terms'><li>얼굴 노출·전후 6장</li><li>원고 사전 컨펌</li><li>시술 후 2주 내 포스팅</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 블로그체험단 모집 · <span class="muted">수신 2026-07-23</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="42" data-status="마감 지남" data-cat="리빙·생활" data-date="2026-07-22" data-brand="핸드워시·바디워시(배송형)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">핸드워시·바디워시(배송형)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">리빙·생활</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 핸드워시 블로그 체험단 캠페인 참여 가능하실까요~?</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">핸드워시 2개·퍼퓸 바디워시·전용패드·쇼핑백·메시지카드(6만원 상당)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">제품 배송 7/28~29, 수취 후 7일 내</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">핸드워시 세트 배송형 체험단. 원고 1,100자·사진 15장·영상 20초.</p>
+          <ul class='terms'><li>일방문자 200명 이상 우대</li><li>사진 15장·영상 20초</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 배송·포스팅 기간 경과</p>
+          <p class="sender"><strong>발신:</strong> 캠페인 리뷰어 모집 · <span class="muted">수신 2026-07-22</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="43" data-status="마감 지남" data-cat="문화·공연" data-date="2026-07-20" data-brand="강남 코미디라운지">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">강남 코미디라운지</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">문화·공연</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 강남역, 신논현역 앞 코미디공연 관람 이용권 안내</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">입장권 2매 + 맥주 2잔(7.24 공연 20~22시)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">7/24 공연 한정</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">강남 코미디라운지 스탠드업 공연 관람권 2매+맥주 2잔 체험(7/24 공연 한정).</p>
+          <ul class='terms'><li>7/24 공연 한정</li><li>2인</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 공연일 경과</p>
+          <p class="sender"><strong>발신:</strong> 블로그랩체험단 · <span class="muted">수신 2026-07-20</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="44" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-07-19" data-brand="강남 성형외과(지방흡입)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">강남 성형외과(지방흡입)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">블로거님! 지방흡입, 가슴지방이식, 골반지방이식 100% 무료 체험단 문의드려요!</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">지방흡입·가슴지방이식·골반지방이식 전액 지원(500~800만원 상당) + 6~8주 애프터케어</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">강남 성형외과 지방흡입·지방이식 100% 무료 체험단 모집 안내.</p>
+          <ul class='terms'><li>수술급 시술(500~800만원 상당)</li><li>애프터케어 포함</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 체험단 모집 · <span class="muted">수신 2026-07-19</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="45" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-07-11" data-brand="짱구야 학교가자 별관(건대)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">짱구야 학교가자 별관(건대)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">맛집·카페</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">블로그 보다가 연락드립니다! 리뷰 한번 부탁드려도 괜찮을까요?</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">55,000원 자유이용권(주류 필수), 인스타 추가 시 15,000원 추가</span></div>
+        <div><span class="lbl">원고료</span><span class="val">최대 15,000원(인스타 추가 리뷰 시)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 + 인스타</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">건대 포장마차 리뷰 협찬. 인스타([인스타 계정]) 동시 업로드 시 1.5만원 추가 제공.</p>
+          <ul class='terms'><li>주류 1잔 필수</li><li>인스타 추가 시 1.5만원</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 짱구야 학교가자 · <span class="muted">수신 2026-07-11</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="46" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-07-09" data-brand="신당역 수낙(이자카야)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">신당역 수낙(이자카야)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">맛집·카페</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고)[신당역/5만] 신당역 1분 분위기 좋은 이자카야 요리주점 체험 모집</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">2~3인 5만원 매장 이용권(주류 1 필수, 남은 금액 자율)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">신당역 이자카야 수낙 5만원 이용권 체험. 월요일 정기휴무.</p>
+          <ul class='terms'><li>주류 1잔 필수</li><li>월 휴무</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 아임파블 · <span class="muted">수신 2026-07-09</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="47" data-status="회신 완료" data-cat="플랫폼·제휴" data-date="2026-07-02" data-brand="NOL(놀데이) · 이지엠피플">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">NOL(놀데이) · 이지엠피플</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">플랫폼·제휴</span>
+          <span class="pill st-replied">회신 완료</span>
+        </div>
+      </div>
+      <p class="card-sub">[이지엠피플] NOL 국내숙소 할인 관련 블로그 포스팅 진행 문의 (프로모션 : 놀데이)</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">NOL 놀데이 프로모션 소개 + 국내 숙소(히든베이 호텔) 후기 포스팅</span></div>
+        <div><span class="lbl">원고료</span><span class="val">본인 제시 5만원 + 2차 활용 5만원(회신 완료)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">원고 7/6, 업로드 7/7~</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 + 인스타 2차 활용</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">NOL 놀데이 국내숙소 할인 포스팅 제안. 히든베이 호텔 이미지 보유 여부가 관건이라 &#x27;26년 초 방문 이력으로 응답.</p>
+          <ul class='terms'><li>원고료 협의(본인 5만원 제시)</li><li>2차 활용 별도 5만원</li><li>포스팅 후 4개월 뒤 말일 입금</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 7/3 회신 — 원고료 5만원·2차 활용 5만원 제시, 히든베이 호텔 이미지 보유. 이후 후속 메일 없음</p>
+          <p class="sender"><strong>발신:</strong> 이지엠피플 · <span class="muted">수신 2026-07-02</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="48" data-status="검토 대기" data-cat="기자단·체험단 모집" data-date="2026-07-01" data-brand="리뷰의만족 체험단">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">리뷰의만족 체험단</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">기자단·체험단 모집</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 리뷰의만족체험단 — 원고료 받는 준최 블로거 기자단 의뢰</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">준최 블로그 직속 기자단 상시 모집(원고료 지급)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">원고료(공고별 상이)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">상시 모집</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">준최 블로그 기자단 상시 모집 안내. 블로그 방문자수·연락처를 비밀댓글로 접수.</p>
+          <ul class='terms'><li>상시 모집</li><li>평균 방문자수 기재</li><li>인스타 동시 업로드 여부 확인</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 지원 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 리뷰의만족 · <span class="muted">수신 2026-07-01</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="49" data-status="마감 지남" data-cat="맛집·카페" data-date="2026-06-30" data-brand="홍대 혼술바 담소">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">홍대 혼술바 담소</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">맛집·카페</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 체험 모집: 홍대 혼술바 방문 이용권 (최대 5만 원 제공)</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">1인 3만원 / 2인 5만원 이용권(주류 2인, 위스키 제외)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">모집 ~7/1, 당첨 후 2주 내 리뷰</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">홍대 연남 혼술바 담소 방문 체험(10명). 화요일 휴무.</p>
+          <ul class='terms'><li>모집 10명</li><li>화 휴무</li><li>당첨 후 2주 내 리뷰</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 모집 기간(7/1) 경과</p>
+          <p class="sender"><strong>발신:</strong> 여기서 · <span class="muted">수신 2026-06-30</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="50" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-26" data-brand="성남 비만클리닉">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">성남 비만클리닉</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 250만원 상당 성남지방추출주사 블로그 체험단 + 인천부평 피부과 리프팅·스킨부스터</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">지방추출주사 1회(팔뚝·허벅지 中 택1) + 후관리 3회(총 4회 방문), 250만원 상당</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">평일 방문(목·주말 불가)</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">성남 비만클리닉 지방추출주사+후관리 3회 체험. 70kg 미만·수술 이력 없음 등 조건.</p>
+          <ul class='terms'><li>70kg 미만</li><li>주 1회 총 4회 방문</li><li>평일만 가능</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 블로거 협찬 모집 · <span class="muted">수신 2026-06-26</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="51" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-25" data-brand="강남역 인근 피부과">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">강남역 인근 피부과</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 🔔 [강남] 완전 비절개 눈밑지방재배치 블로그 체험단 모집 🔔</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">비절개 눈밑지방재배치(필요 시 필러 병행) 최대 150만원 상당</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">평일 10~17시</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">강남역 피부과 눈밑지방재배치 체험. 모집 인원 0명으로 안내된 회차.</p>
+          <ul class='terms'><li>코~이마 노출</li><li>원고 컨펌 후 업로드</li><li>체험 후 1주 내</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 블로그체험단 모집 · <span class="muted">수신 2026-06-25</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="52" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-25" data-brand="강남역 피부과(제제나무)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">강남역 피부과(제제나무)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">[강남역 피부과 체험단 / 원고료 10만] 뉴비쥬·립쥬란·온다리프팅·인모드·필러·하이코</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">뉴비쥬/립쥬란/온다리프팅/인모드/필러/하이코 실리프팅 中 상담 후 결정</span></div>
+        <div><span class="lbl">원고료</span><span class="val">원고료 10만원(3.3% 원천징수)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 + 플레이스·구글 리뷰</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">강남역 피부과 원고료 10만원 체험단. 시술 후 블로그·네이버 플레이스·구글 리뷰까지 요구.</p>
+          <ul class='terms'><li>원고료 10만원</li><li>리뷰 3종(블로그·플레이스·구글)</li><li>상담 후 시술 결정</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 제제나무 · <span class="muted">수신 2026-06-25</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="53" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-24" data-brand="강남 피부과(Kesxis)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">강남 피부과(Kesxis)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">[강남/협찬] 맞춤 피부 관리! 피부과 체험단 제안드립니다!</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">하이엔드 필러·바디슈링크+바디씬·쿨페이즈·목주름필러·올타이트·립쥬란·침샘보톡스·쥬베룩 中 선택</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">강남 피부과 맞춤 시술 체험단. 네이버 링크 폼으로 신청, 선정자만 연락.</p>
+          <ul class='terms'><li>폼 신청</li><li>선정자 개별 연락</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> Kesxis Jorlos · <span class="muted">수신 2026-06-24</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="54" data-status="검토 대기" data-cat="스튜디오·사진" data-date="2026-06-23" data-brand="스튜디오 오늘,예쁨(잠실)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">스튜디오 오늘,예쁨(잠실)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">스튜디오·사진</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">[체험 제안] 스튜디오 오늘,예쁨 × 째린빵님 협업 제안드립니다</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">프리미엄 셀프촬영 패키지 2시간 + 드레스 35벌·소품 무제한 + 원본·보정본·인화(23만원 상당)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">토요일 제외 협의</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">잠실 석촌역 셀프사진관 드레스 대여 촬영 협업 제안. 방문 7일 내 블로그 포스팅.</p>
+          <ul class='terms'><li>2시간 촬영</li><li>드레스 35벌</li><li>7일 내 포스팅</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 스튜디오 오늘,예쁨 · <span class="muted">수신 2026-06-23</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="55" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-23" data-brand="양재역 클리닉">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">양재역 클리닉</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">안녕하세요 양재역에 위치한 클리닉에서 블로그 체험단을 모집하고 있습니다</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">울쎄라·세르프·엘라비에리투오·네오페이스·올리디아마요·고우리 中 1가지</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">확정 후 조율</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">양재역 클리닉 체험단. 일회성 포스팅+전후사진 제공(부분 공개 가능).</p>
+          <ul class='terms'><li>시술 1가지</li><li>일회성 포스팅</li><li>전후사진 제공</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 제인이 · <span class="muted">수신 2026-06-23</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="56" data-status="회신 완료" data-cat="뷰티 제품" data-date="2026-06-22" data-brand="비터셀즈">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">비터셀즈</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">뷰티 제품</span>
+          <span class="pill st-replied">회신 완료</span>
+        </div>
+      </div>
+      <p class="card-sub">[비터셀즈] 블로그 포스팅 관련 견적 문의드립니다.</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">정보성 게시물 작성(가이드·사진 일체 제공, 정리만 하는 단순 작업)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">회신 완료 — 가이드·사진 제공 시 3~5만원, 일반 포스팅 5~10만원 제시</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">브랜드 측이 단가 문의. 기자단 형식 포스팅은 블로그 품질에 영향이 있어 가이드 확인 후 결정하겠다고 회신.</p>
+          <ul class='terms'><li>단가 협의</li><li>가이드 사전 확인 필요</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 6/24 회신 — 3~5만원(기자단형)/5~10만원 제시, 상세 가이드 요청. 이후 회신 없음</p>
+          <p class="sender"><strong>발신:</strong> 비터셀즈 마케팅팀 이현채 · <span class="muted">수신 2026-06-22</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="57" data-status="진행 중" data-cat="맛집·카페" data-date="2026-06-22" data-brand="더그릭베어(강남N타워점)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">더그릭베어(강남N타워점)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">맛집·카페</span>
+          <span class="pill st-active">진행 중</span>
+        </div>
+      </div>
+      <p class="card-sub">안녕하세요~! 그릭요거트&amp;그래놀라 브랜드 더그릭베어입니다. 협찬문의드려요</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">매장 방문 2만원 이용권 + 수제 그래놀라 세트</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">방문 7/3 18:30 확정, 방문 후 1주 내 포스팅</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 + 지도 리뷰</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">상수역 그릭요거트 브랜드 매장 방문 협찬. 6/24 회신으로 7/3 18:30 방문 확정.</p>
+          <ul class='terms'><li>2만원 이용권+그래놀라</li><li>블로그 500자·사진 5장</li><li>지도 리뷰 1회</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 6/24 회신 → 업체가 7/3 18:30 2인 방문 확정. 이후 포스팅 확인 메일은 없음</p>
+          <p class="sender"><strong>발신:</strong> 더그릭베어 이태규 · <span class="muted">수신 2026-06-22</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="58" data-status="완료" data-cat="피부과·시술" data-date="2026-06-22" data-brand="엠디셀 ESC60(민앤민의원 강남)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">엠디셀 ESC60(민앤민의원 강남)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-done">완료</span>
+        </div>
+      </div>
+      <p class="card-sub">[협찬 제안] 줄기세포 배양액 ESC60 스킨부스터 시술 체험 제안</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">ESC60 스킨부스터 시술 1회(약 20만원 상당)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">원고료 5만원(9월 초 일괄 지급)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">시술 7월 중 평일</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">줄기세포 배양액 스킨부스터 ESC60 시술 협찬. 리뷰 8/4 업로드, 원고료 5만원 9월 초 지급 완료.</p>
+          <ul class='terms'><li>원고료 5만원</li><li>시술 전후 사진(1일·3~7일 차)</li><li>원고료 지급 정보 폼 제출</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 6/22 수락→6/23 연락처 전달→시술·8/4 포스팅(blog.naver.com/[블로그]/224368266841)→9/11 원고료 지급 완료 통보</p>
+          <p class="sender"><strong>발신:</strong> 엠디셀 이해인 · <span class="muted">수신 2026-06-22</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="59" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-17" data-brand="강남역 성형외과">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">강남역 성형외과</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">💙 피부과 블로그 체험단 모집 💙</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">스킨부스터(리투오)·필러·립쥬란·눈수술 中 선택</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">화~금 10:30~17:00</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">강남역 성형외과 체험단(8/10 안현영 건과 동일 양식의 별도 모집). 포스팅 1년 이상 유지.</p>
+          <ul class='terms'><li>포스팅 1년 이상 유지</li><li>화~금 방문</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 고다현 · <span class="muted">수신 2026-06-17</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="60" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-06-17" data-brand="선릉역 피부과(돈블리마케팅)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">선릉역 피부과(돈블리마케팅)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">[광고]선릉역 피부과 블로그 체험단 모집 안내</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">피부과 방문 체험(상담 후 시술)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">선릉역 피부과 블로그 체험단 모집(8/3 압구정 건과 같은 폼).</p>
+          <ul class='terms'><li>구글폼 신청</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 구글폼 신청 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 돈블리마케팅 김수연 · <span class="muted">수신 2026-06-17</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="61" data-status="검토 대기" data-cat="운동·웰니스" data-date="2026-06-10" data-brand="오붓(obud)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">오붓(obud)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">운동·웰니스</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">[오붓] 째린빵님, 웰니스 스튜디오를 체험하실 수 있는 협업 제안드려요!</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">오붓패스 4회권(요가·필라테스·크로스핏 등) + 크리에이터 5% 할인코드</span></div>
+        <div><span class="lbl">원고료</span><span class="val">리워드 적립(1만원 이상 출금 가능)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">패스 발급 후 30일</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">웰니스 예약 플랫폼 오붓의 오붓패스 4회권 협업 제안. 리마인드 메일까지 왔으나 회신 없음.</p>
+          <ul class='terms'><li>오붓패스 4회권</li><li>30일 유효</li><li>추천 리워드</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 6/10 제안 → 6/11 리마인드 메일까지 수신, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 오붓 김혜원 · <span class="muted">수신 2026-06-10</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="62" data-status="마감 지남" data-cat="운동·웰니스" data-date="2026-05-29" data-brand="원더 바레(서울 강서)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">원더 바레(서울 강서)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">운동·웰니스</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 체험 모집: 바레 지도자 자격증 과정 토요일반 개강 (250만원 상당)</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">바레 지도자 자격증 과정 5월 토요일반(250만원 상당, 18시간)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">모집 ~5/29, 5/30·6/6·6/13 교육</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 3회(주차별)</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">바레 지도자 자격증 과정 체험(2명). 3주간 회차별 리뷰 3회 필요.</p>
+          <ul class='terms'><li>모집 2명</li><li>리뷰 3회</li><li>3일 교육 참석</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 모집 기간 경과</p>
+          <p class="sender"><strong>발신:</strong> 여기서 · <span class="muted">수신 2026-05-29</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="63" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-05-27" data-brand="남도가는길 김형순(신촌)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">남도가는길 김형순(신촌)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">맛집·카페</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고)[신촌/6~10만] 한식명인 남도요리 한정식 맛집 체험단 모집</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">2~3인 완도정식 / 4인 남도특정식</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">신촌 남도 한정식 맛집 체험. 인원수별 정식 제공.</p>
+          <ul class='terms'><li>인원수별 코스</li><li>주차 가능</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 아임파블 · <span class="muted">수신 2026-05-27</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="64" data-status="마감 지남" data-cat="맛집·카페" data-date="2026-05-24" data-brand="프리미엄 다이닝(한우 오마카세)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">프리미엄 다이닝(한우 오마카세)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">맛집·카페</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">안녕하세요 블로거님 체험제안드리려 연락드렸습니다!</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">한우 오마카세·한정식 다이닝 18만원 상당</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">선착순 모집</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">한우 오마카세 프리미엄 다이닝 18만원 상당 체험 제안. 네이버 링크로 신청.</p>
+          <ul class='terms'><li>18만원 상당</li><li>선착순</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 선착순 모집 종료로 판단</p>
+          <p class="sender"><strong>발신:</strong> 인플루언서 매칭 플랫폼 · <span class="muted">수신 2026-05-24</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="65" data-status="검토 대기" data-cat="플랫폼·제휴" data-date="2026-05-21" data-brand="투어라이브">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">투어라이브</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">플랫폼·제휴</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">째린빵님 협업 제안드립니다! (여행 가이드 앱 제휴)</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">여행 가이드 앱 링크 삽입 제휴 — 판매금액의 20% 수수료</span></div>
+        <div><span class="lbl">원고료</span><span class="val">판매수수료 20%(일방문자 500~1,000 블로그 기준 포스팅 1건당 50만원 사례 안내)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">상시</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 링크 삽입(기존 글도 가능)</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">여행 앱 제휴(어필리에이트) 제안. 기존 포스팅에 링크만 추가하는 수익형 구조, 두 번 연락.</p>
+          <ul class='terms'><li>수수료 20%</li><li>기존 글에도 링크 삽입 가능</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 5/21 제안 → 5/25 리마인드, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 투어라이브 · <span class="muted">수신 2026-05-21</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="66" data-status="검토 대기" data-cat="맛집·카페" data-date="2026-05-21" data-brand="중랑·강동 맛집 + 멜로스킨 앰플">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">중랑·강동 맛집 + 멜로스킨 앰플</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">맛집·카페</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 서울 중랑구 강동구 고기 맛집 &amp; 앰플 배송 &amp; 원데이클래스 체험단 모집</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">숯불구이 2인분+꽃게탕 / 글루타치온 샷 앰플 4주분(배송)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">숯불구이 맛집(면목·천호)과 멜로스킨 글루타치온 앰플 배송형 체험을 한 메일에 묶어 안내.</p>
+          <ul class='terms'><li>맛집 2곳 택1</li><li>앰플 4주분 배송형</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 체험단 모집 · <span class="muted">수신 2026-05-21</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="67" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-05-14" data-brand="퍼즐코퍼레이션(라바짜)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">퍼즐코퍼레이션(라바짜)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">뷰티 제품</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) [퍼즐/체험단] 라바짜 이탈리아 액상커피 블로그 체험단 모집</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">라바짜 이탈리아 액상커피 체험(네이버 인플루언서 체험단)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">원고료 있음(금액 미기재)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">5월 중 업로드</span></div>
+        <div><span class="lbl">채널</span><span class="val">네이버 인플루언서/블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">라바짜 액상커피 인플루언서 체험단. 원고료 지급, 키워드챌린지 포함.</p>
+          <ul class='terms'><li>원고료 지급</li><li>키워드챌린지</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 5월 업로드 일정 경과</p>
+          <p class="sender"><strong>발신:</strong> 퍼즐 UGC팀 · <span class="muted">수신 2026-05-14</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="68" data-status="완료" data-cat="맛집·카페" data-date="2026-04-24" data-brand="그레인제빵소(길동점)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">그레인제빵소(길동점)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">맛집·카페</span>
+          <span class="pill st-done">완료</span>
+        </div>
+      </div>
+      <p class="card-sub">안녕하세요, 째린님. 가정의날 그레인제빵소 체험단 선정을 축하드립니다.</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">가정의날 케이크·빵 체험(방문 5/1 12~13시)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">방문 5/1, 체험 후 3일 내 포스팅</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">가정의날 빵집 체험단 당첨. 5/1 방문 후 5/6 포스팅, 업체가 사진·영상까지 정성껏 담았다고 회신.</p>
+          <ul class='terms'><li>방문 5/1</li><li>3일 내 포스팅</li><li>가이드라인(노션) 준수</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 4/25 진행 회신 → 5/1 방문 → 5/6 포스팅(blog.naver.com/[블로그]/224275881082) → 업체 감사 회신</p>
+          <p class="sender"><strong>발신:</strong> 그레인제빵소 김민성 · <span class="muted">수신 2026-04-24</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="69" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-04-23" data-brand="이수역 피부과(텐써마)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">이수역 피부과(텐써마)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고)[이수역][인스타 릴스] 고주파 리프팅 텐써마 체험 안내</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">텐써마 300샷 + 원고료 5만원</span></div>
+        <div><span class="lbl">원고료</span><span class="val">5만원</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">신청 4/26(4/15 공고는 4/17)</span></div>
+        <div><span class="lbl">채널</span><span class="val">인스타 릴스</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">이수역 텐써마 300샷+원고료 5만원 인스타 릴스 체험. 4/15·4/23 두 차례 발송.</p>
+          <ul class='terms'><li>원고료 5만원</li><li>얼굴 노출 필수</li><li>병원명 비노출</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 기간 경과</p>
+          <p class="sender"><strong>발신:</strong> 리뷰나비 · <span class="muted">수신 2026-04-23</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="70" data-status="완료" data-cat="리빙·생활" data-date="2026-04-22" data-brand="클루바(CLUEVA)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">클루바(CLUEVA)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">리빙·생활</span>
+          <span class="pill st-done">완료</span>
+        </div>
+      </div>
+      <p class="card-sub">[협업 제안] 클루바 터치리스 자동 디스펜서 블로그 후기 협업 문의</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">터치리스 자동 디스펜서 1종 무상 제공(화이트)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">수령 후 7일 내 업로드(조율로 5/31까지 연장)</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회(사진+영상)</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">자동 디스펜서 제품 협찬. 본업이 바빠 업로드가 늦어졌고 5/31 마감으로 조율해 포스팅 완료.</p>
+          <ul class='terms'><li>제품 무상 제공</li><li>사진+영상 포함 후기</li><li>업로드 지연 조율 이력</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 4/23 수락(주소 전달) → 5/26 업체 독촉 → 5/27 연장 요청 → 5/31 포스팅(blog.naver.com/[블로그]/224302042197) → 업체 감사 회신 6/1</p>
+          <p class="sender"><strong>발신:</strong> 클루바 이지영 · <span class="muted">수신 2026-04-22</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="71" data-status="마감 지남" data-cat="기자단·체험단 모집" data-date="2026-04-21" data-brand="밀크T(천재교과서)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">밀크T(천재교과서)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">기자단·체험단 모집</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 원고료 10만원+@ 블로거 체험단 — 밀크T 14일 무료체험</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">밀크T 14일 무료체험 + 신세계상품권 10만원 + 유입 건당 5~10만원</span></div>
+        <div><span class="lbl">원고료</span><span class="val">10만원(상품권) + 유입 성과급</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기기 배송 후 2주 내 포스팅</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">유아·초중등 자녀 대상 학습기 체험단. 자녀가 없는 째린님과는 대상이 맞지 않는 공고.</p>
+          <ul class='terms'><li>5세~초중등 자녀 필요</li><li>원고료 10만원 상품권</li><li>유입 성과급</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> SNSKOREA · <span class="muted">수신 2026-04-21</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="72" data-status="검토 대기" data-cat="뷰티 제품" data-date="2026-04-20" data-brand="레디우스(판테알엔 밤크림)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">레디우스(판테알엔 밤크림)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">뷰티 제품</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) [원고료 5만원] 레디우스 판테알엔 알엑스더마 리커버리 밤 크림 체험단 모집</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">밤 크림 1종 + 스마트블록 상위 3위 노출 시 원고료 5만원</span></div>
+        <div><span class="lbl">원고료</span><span class="val">5만원(스마트블록 3위 이내 조건)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">기한 미기재</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">밤 크림 배송형 체험단. 스마트블록 상위 3위 노출 시에만 원고료 5만원 지급되는 조건부 구조.</p>
+          <ul class='terms'><li>원고료 5만원은 노출 조건부</li><li>네이버폼 신청</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 네이버폼 신청 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 체험단 모집 · <span class="muted">수신 2026-04-20</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="73" data-status="검토 대기" data-cat="피부과·시술" data-date="2026-04-15" data-brand="흉터치료 전문 한의원(8개 지점)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">흉터치료 전문 한의원(8개 지점)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 흉터치료 전문한의원 블로그 방문체험단으로 초대드립니다</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">흉터 치료 3회 방문 + 3회 포스팅</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">방문 후 7일 이내 작성</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">여드름·수술 흉터 치료 한의원 3회 방문 체험(모집 5명). 노원·강남·잠실·홍대 등 8개 지점.</p>
+          <ul class='terms'><li>3회 방문·3회 포스팅</li><li>모집 5명</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 회신 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 체험단 모집 대행 · <span class="muted">수신 2026-04-15</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="74" data-status="마감 지남" data-cat="피부과·시술" data-date="2026-04-14" data-brand="천호역 피부과(텐써마)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">천호역 피부과(텐써마)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">피부과·시술</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) 천호역 바로 앞에서 유명 고주파리프팅 블로그 체험단 모집</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">텐써마 300샷</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">신청 ~4/17</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">천호역 텐써마 300샷 블로그 체험. 얼굴 노출 필수, 병원명 미언급.</p>
+          <ul class='terms'><li>얼굴 노출 필수</li><li>병원명 비노출</li><li>~4/17 신청</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 신청 기간(4/17) 경과</p>
+          <p class="sender"><strong>발신:</strong> 리뷰나비 · <span class="muted">수신 2026-04-14</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="75" data-status="완료" data-cat="문화·공연" data-date="2026-04-13" data-brand="룸익스케이프 블랙점">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">룸익스케이프 블랙점</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">문화·공연</span>
+          <span class="pill st-done">완료</span>
+        </div>
+      </div>
+      <p class="card-sub">방탈출 룸익스케이프 블랙점의 초대장 (예약·포스팅 완료)</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">방탈출 &#x27;에이전트&#x27; 테마 체험(2인)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">4/19 12:10 예약, 체험 후 포스팅</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">방탈출 체험단. 예약 확정 후 체험, 5/5 포스팅 링크 회신까지 완료. (원 초대 메일은 이번 읽기 범위 이전)</p>
+          <ul class='terms'><li>2인 체험</li><li>포스팅 1회</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 4/13 예약 회신 → 4/19 체험 → 5/5 포스팅(blog.naver.com/[블로그]/224275843607)</p>
+          <p class="sender"><strong>발신:</strong> 룸익스케이프 · <span class="muted">수신 2026-04-13</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="76" data-status="검토 대기" data-cat="기자단·체험단 모집" data-date="2026-04-09" data-brand="행복마케팅 리얼리뷰체험단">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">행복마케팅 리얼리뷰체험단</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">기자단·체험단 모집</span>
+          <span class="pill st-wait">검토 대기</span>
+        </div>
+      </div>
+      <p class="card-sub">안녕하세요! 리얼리뷰체험단(행복마케팅) 섭외팀입니다.</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">전국 체험처 리스트(피부과·문신·에스테틱·메이크업 등) 상시 모집</span></div>
+        <div><span class="lbl">원고료</span><span class="val">업체별 상이</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">상시(업체별)</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">지역별 체험단 목록을 정기 발송하는 섭외 리스트. 논현·압구정·잠실·홍대 등 다수 업체 포함.</p>
+          <ul class='terms'><li>상시 모집</li><li>중복 지원 가능</li><li>선정 시 카톡 안내</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 4/9·4/30 두 차례 리스트 수신, 지원 기록 없음</p>
+          <p class="sender"><strong>발신:</strong> 행복마케팅 섭외팀 · <span class="muted">수신 2026-04-09</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="77" data-status="마감 지남" data-cat="리빙·생활" data-date="2026-04-08" data-brand="퍼즐코퍼레이션(올드캐슬 위스키)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">퍼즐코퍼레이션(올드캐슬 위스키)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">리빙·생활</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">(광고) [퍼즐/체험단] 올드캐슬 위스키 구매형 블로그 체험단 모집</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">올드캐슬 위스키 제품 제공 + 원고료(구매형)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">제품 제공 + 원고료 있음(금액 미기재)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">4월 중 업로드</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">위스키 구매형 체험단. 제품 제공+원고료, 네이버 인플루언서 채널.</p>
+          <ul class='terms'><li>구매형</li><li>원고료 지급</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 4월 업로드 일정 경과</p>
+          <p class="sender"><strong>발신:</strong> 퍼즐 UGC팀 · <span class="muted">수신 2026-04-08</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="78" data-status="마감 지남" data-cat="맛집·카페" data-date="2026-04-07" data-brand="어라운지(커피 원두)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">어라운지(커피 원두)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">맛집·카페</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">[어라운지] 콜롬비아 디카페인 1kg 홀빈 원두 제품제공형 체험단 제안</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">콜롬비아 디카페인 1kg 홀빈 원두 제공</span></div>
+        <div><span class="lbl">원고료</span><span class="val">원고료 없음(제품 제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">물품 4월 첫째주 발송, 업로드 4/12~4/18</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">원두 1kg 제품 제공형 체험단(원고료 없음). 홀빈 발송, 스타벅스 그라인딩 서비스 안내.</p>
+          <ul class='terms'><li>원고료 없음</li><li>홀빈 1kg</li><li>4/12~4/18 업로드</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 업로드 기간 경과</p>
+          <p class="sender"><strong>발신:</strong> 루프잇 박세영 · <span class="muted">수신 2026-04-07</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="79" data-status="마감 지남" data-cat="뷰티 제품" data-date="2026-04-03" data-brand="에즈 오브 투데이(썬스크린)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">에즈 오브 투데이(썬스크린)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">뷰티 제품</span>
+          <span class="pill st-expired">마감 지남</span>
+        </div>
+      </div>
+      <p class="card-sub">[에즈 오브 투데이] 썬스크린 후기 리뷰 인스타그램 릴스 체험단 모집</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">선스크린 제품 제공 + 출금 가능 포인트 25,000P</span></div>
+        <div><span class="lbl">원고료</span><span class="val">25,000P(현금 출금 가능)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">모집 ~4/7</span></div>
+        <div><span class="lbl">채널</span><span class="val">인스타 릴스</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">뉴욕발 클린뷰티 브랜드 썬스크린 릴스 체험. 포인트 25,000P 적립.</p>
+          <ul class='terms'><li>릴스 1건</li><li>25,000P</li><li>~4/7 마감</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 수신만 확인, 모집 기간(4/7) 경과</p>
+          <p class="sender"><strong>발신:</strong> 소셜라우더/퓨어글로벌 · <span class="muted">수신 2026-04-03</span></p>
+          
+        </div>
+      </details>
+    </article>
+    <article class="card" data-idx="80" data-status="완료" data-cat="리빙·생활" data-date="2026-02-06" data-brand="유피트(쿡웨어)">
+      <div class="card-top">
+        <div class="card-head">
+          <span class="src-tag">네이버 메일</span>
+          <h3 class="brand">유피트(쿡웨어)</h3>
+        </div>
+        <div class="badges">
+          <span class="pill cat-pill">리빙·생활</span>
+          <span class="pill st-done">완료</span>
+        </div>
+      </div>
+      <p class="card-sub">[유피트] 쿡웨어 제품 협찬 제안드립니다</p>
+      <div class="meta-grid">
+        <div><span class="lbl">제공 내역</span><span class="val">쿡웨어 제품 협찬(배송)</span></div>
+        <div><span class="lbl">원고료</span><span class="val">없음(제공형)</span></div>
+        <div><span class="lbl">마감·일정</span><span class="val">2/26 이내 포스팅</span></div>
+        <div><span class="lbl">채널</span><span class="val">블로그 1회</span></div>
+      </div>
+      <details class="card-details">
+        <summary>상세 조건 · 상태 근거 보기</summary>
+        <div class="detail-body">
+          <p class="summary-txt">쿡웨어 제품 협찬. 업체 소속 확인 자료를 먼저 요청한 뒤 주소를 전달해 진행, 2/26 포스팅 완료. (이번 읽기 범위 이전 건)</p>
+          <ul class='terms'><li>업체 확인 자료 요청 후 진행</li><li>2/26 포스팅</li></ul>
+          <p class="evidence"><strong>상태 근거:</strong> 2/6 수락(업체 확인 자료 요청)→2/9 주소 전달→2/19 수령→2/26 포스팅 완료</p>
+          <p class="sender"><strong>발신:</strong> 유피트 · <span class="muted">수신 2026-02-06</span></p>
+          
+        </div>
+      </details>
+    </article>
+  </main>
+  <p class="empty" id="empty">조건에 맞는 협찬이 없어요.</p>
+
+  <p class="footer-note">
+    총 81건 · 레뷰 선정 2건 + 네이버 메일 79건<br/>
+    개인정보(이메일 주소·연락처·자택 주소)는 제외한 공개용 요약본입니다.
+  </p>
+</div>
+
+<script>
+(function () {
+  var list = document.getElementById('cardList');
+  var cards = Array.prototype.slice.call(list.querySelectorAll('.card'));
+  var empty = document.getElementById('empty');
+  var state = { q: '', st: 'all', cat: 'all', sort: 'default' };
+
+  function apply() {
+    var q = state.q.trim().toLowerCase();
+    var sorted = cards.slice().sort(function (a, b) {
+      if (state.sort === 'newest') return (b.dataset.date || '').localeCompare(a.dataset.date || '');
+      if (state.sort === 'oldest') return (a.dataset.date || '').localeCompare(b.dataset.date || '');
+      if (state.sort === 'brand') return (a.dataset.brand || '').localeCompare(b.dataset.brand || '', 'ko');
+      return Number(a.dataset.idx) - Number(b.dataset.idx);
+    });
+    var shown = 0;
+    sorted.forEach(function (el) {
+      list.appendChild(el);
+      var st = el.dataset.status;
+      var cat = el.dataset.cat;
+      var okSt = state.st === 'all' || (state.st === 'done_all' ? (st === '완료' || st === '회신 완료') : st === state.st);
+      var okCat = state.cat === 'all' || cat === state.cat;
+      var okQ = !q || el.textContent.toLowerCase().indexOf(q) !== -1;
+      var vis = okSt && okCat && okQ;
+      el.style.display = vis ? '' : 'none';
+      if (vis) shown++;
+    });
+    empty.style.display = shown ? 'none' : 'block';
+  }
+
+  document.getElementById('q').addEventListener('input', function (e) { state.q = e.target.value; apply(); });
+  document.getElementById('sort').addEventListener('change', function (e) { state.sort = e.target.value; apply(); });
+
+  document.getElementById('statusPills').addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-st]');
+    if (!btn) return;
+    state.st = btn.dataset.st;
+    Array.prototype.forEach.call(document.querySelectorAll('#statusPills .filter-pill'), function (b) {
+      b.classList.toggle('active', b === btn);
+    });
+    apply();
+  });
+
+  document.getElementById('catPills').addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-cat]');
+    if (!btn) return;
+    state.cat = btn.dataset.cat;
+    Array.prototype.forEach.call(document.querySelectorAll('#catPills .filter-pill'), function (b) {
+      b.classList.toggle('active', b === btn);
+    });
+    apply();
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.kpi[data-kpi]'), function (k) {
+    k.addEventListener('click', function () {
+      state.st = k.dataset.kpi;
+      Array.prototype.forEach.call(document.querySelectorAll('#statusPills .filter-pill'), function (b) {
+        b.classList.toggle('active', b.dataset.st === state.st);
+      });
+      apply();
+    });
+  });
+
+  apply();
+})();
+</script>
+</body>
+</html>
